@@ -7,7 +7,7 @@ export async function initialSeed(prisma: PrismaClient) {
     await prisma.user.createMany({
       data: [
         {
-          email: 'admin@email.com',
+          email: 'admin@sikkhon.com',
           password: (
             await hashedPassword(coreConstant.COMMON_PASSWORD)
           ).toString(),
@@ -19,7 +19,7 @@ export async function initialSeed(prisma: PrismaClient) {
           email_verified: coreConstant.IS_VERIFIED,
         },
         {
-          email: 'student@email.com',
+          email: 'student@sikkhon.com',
           password: (
             await hashedPassword(coreConstant.COMMON_PASSWORD)
           ).toString(),
@@ -31,7 +31,7 @@ export async function initialSeed(prisma: PrismaClient) {
           email_verified: coreConstant.IS_VERIFIED,
         },
         {
-          email: 'instructor@email.com',
+          email: 'instructor@sikkhon.com',
           password: (
             await hashedPassword(coreConstant.COMMON_PASSWORD)
           ).toString(),
