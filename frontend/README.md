@@ -76,7 +76,7 @@ You can also check all of the **details and demos** on my blog post:
 
 ### 2. Install dependencies
 
-It is encouraged to use **yarn** so the husky hooks can work properly.
+It is encouraged to use **yarn** so the  hooks can work properly.
 
 ```bash
 yarn install
