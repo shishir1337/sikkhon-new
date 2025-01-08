@@ -1,5 +1,5 @@
 import request from "@/lib/request";
-import { AnyAsyncThunk } from "@reduxjs/toolkit/dist/matchers";
+// import { AnyAsyncThunk } from "@reduxjs/toolkit/dist/matchers";
 
 export const getAllkycListsApi = async (page: any, limit: any, search: any) => {
   const { data } = await request.get(
@@ -39,7 +39,7 @@ export const getAllVerifykycListsApi = async (
   return data;
 };
 
-export const verifyKycUserForAdminApi = async (value: AnyAsyncThunk) => {
+export const verifyKycUserForAdminApi = async (value: any) => {
   const { data } = await request.post(`/admin/verify-user-kyc`, value);
   return data;
 };
