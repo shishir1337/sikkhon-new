@@ -3,32 +3,42 @@ import {
   Get,
   Param,
   Post,
-  Req,
   Res,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
-import { ResponseModel } from 'src/shared/models/response.model';
 
 import { FileInterceptor } from '@nestjs/platform-express';
-import { Public } from 'src/shared/decorators/public.decorator';
-import path from 'path';
-import { multerUploadConfig } from 'src/shared/configs/multer-upload.config';
-import { Response } from 'express';
-import { FilesService } from './files.service';
-import { UserInfo } from 'src/shared/decorators/user.decorators';
 import { User } from '@prisma/client';
+import { Response } from 'express';
+import path from 'path';
+import { Public } from 'src/shared/decorators/public.decorator';
+import { UserInfo } from 'src/shared/decorators/user.decorators';
 import { coreConstant } from 'src/shared/helpers/coreConstant';
+import { FilesService } from './files.service';
+import multer from 'multer';
+
+interface UploadResponse {
+  success: boolean;
+  url?: string;
+  message?: string;
+}
 
 @Controller('file')
 export class FilesController {
   constructor(private readonly filesService: FilesService) {}
 
   @Post('upload')
-  @UseInterceptors(FileInterceptor('file', multerUploadConfig))
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
-    return 'done';
+  @UseInterceptors(FileInterceptor('file', { storage: multer.memoryStorage() }))
+  async uploadFile(@UploadedFile() file: any): Promise<{ url: string }> {
+    return await this.filesService.uploadFile(file);
   }
+
+  // @Post('upload')
+  // @UseInterceptors(FileInterceptor('file', multerUploadConfig))
+  // uploadFile(@UploadedFile() file: Express.Multer.File) {
+  //   return 'done';
+  // }
 
   @Get('my-uploaded-videos')
   myUploadedVideos(@UserInfo() user: User) {
