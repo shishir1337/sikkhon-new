@@ -103,7 +103,7 @@ export class FilesService {
       }
   
       // Upload to MinIO
-      await minioClient.putObject(this.bucketName, uniqueFilename, fileBuffer, {
+      await minioClient.putObject(this.bucketName, uniqueFilename, fileBuffer, fileBuffer.length, {
         'Content-Type': file.mimetype, // Set MIME type for the file
       });
   
