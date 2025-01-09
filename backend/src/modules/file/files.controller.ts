@@ -30,7 +30,7 @@ export class FilesController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file', { storage: multer.memoryStorage() }))
-  async uploadFile(@UploadedFile() file: any): Promise<{ url: string }> {
+  async uploadFile(@UploadedFile() file: Express.Multer.File): Promise<{ url: string }> {
     return await this.filesService.uploadFile(file);
   }
 

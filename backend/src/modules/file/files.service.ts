@@ -80,26 +80,33 @@ export class FilesService {
     }
   }
 
-  async uploadFile(file: any): Promise<{ url: string }> {
+  async uploadFile(file: Express.Multer.File): Promise<{ url: string }> {
     const minioClient = this.minioConfig.getClient();
-
+  
     try {
       const originalFilename = file.originalname;
       const sanitizedFileName = originalFilename
         .replace(/\s+/g, '-') // Replace spaces with hyphens
         .replace(/[\/\\:*?"<>|]/g, '-'); // Replace invalid characters
       const uniqueFilename = `${Date.now()}-${sanitizedFileName}`;
-      const filePath = file.path;
-
+  
+      // Check if the bucket exists; if not, create it
       const bucketExists = await minioClient.bucketExists(this.bucketName);
       if (!bucketExists) {
         await minioClient.makeBucket(this.bucketName, 'us-east-1');
       }
-
-      const fileStream = await fsPromises.readFile(filePath);
-
-      await minioClient.putObject(this.bucketName, uniqueFilename, fileStream);
-
+  
+      // Use the buffer directly
+      const fileBuffer = file.buffer;
+      if (!fileBuffer) {
+        throw new Error('File buffer is undefined');
+      }
+  
+      // Upload to MinIO
+      await minioClient.putObject(this.bucketName, uniqueFilename, fileBuffer, {
+        'Content-Type': file.mimetype, // Set MIME type for the file
+      });
+  
       return {
         url: `https://${process.env.MINIO_ENDPOINT}/${this.bucketName}/${uniqueFilename}`,
       };
@@ -108,4 +115,5 @@ export class FilesService {
       throw new InternalServerErrorException('Failed to upload file');
     }
   }
+  
 }
