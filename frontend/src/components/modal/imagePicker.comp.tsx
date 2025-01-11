@@ -178,7 +178,10 @@ const ImagePicker = ({
                       <button
                         type="button"
                         className="btn btn-primary"
-                        onClick={() => {handleUpload().then(() => setopen(false))}}
+                        onClick={() => {handleUpload().then((data) => {
+                          setId(data.url);
+                          setopen(false);
+                        })}}
                       >
                         {t(`Confirm Select`)}
                       </button>

@@ -36,8 +36,10 @@ export const uploadFile = async (file: any) => {
     headers: headers,
   })
     .then((response) => response.json())
-    .then((data) => {})
-    .catch((error) => {});
+    .then((data) => data)
+    .catch((error) => {
+      console.log({error})
+    });
 };
 
 export const getMyVideos = async () => {

@@ -369,9 +369,16 @@ export async function getInstructorSettingsData(user_id: number, slugs?: any) {
   }
 }
 
-export const fetchMyUploadFilePathById = async (uploadId: number) => {
+export const fetchMyUploadFilePathById = async (
+  uploadUrl: string | undefined,
+  metaImage?: number,
+) => {
   const uploadDetails = await PrismaClient.myUploads.findFirst({
-    where: { id: uploadId },
+    where: uploadUrl
+      ? { file_path: uploadUrl }
+      : {
+          id: metaImage,
+        },
   });
   return uploadDetails?.file_path || '';
 };
@@ -392,13 +399,15 @@ export function calculateDiscountedPrice(
   return Math.round(discountedPrice * 100) / 100;
 }
 
-export function getTotalDiscountAmount(totalPrice:number,disCountedAmount:number,discountType:number):number
-{
+export function getTotalDiscountAmount(
+  totalPrice: number,
+  disCountedAmount: number,
+  discountType: number,
+): number {
   let totalDiscount = 0;
-  if(discountType === DISCOUNT_TYPE.PERCENTAGE)
-  {
-    totalDiscount = (totalPrice * disCountedAmount)/100;
-  }else {
+  if (discountType === DISCOUNT_TYPE.PERCENTAGE) {
+    totalDiscount = (totalPrice * disCountedAmount) / 100;
+  } else {
     totalDiscount = disCountedAmount;
   }
 

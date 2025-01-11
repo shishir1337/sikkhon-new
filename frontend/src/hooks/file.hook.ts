@@ -39,6 +39,7 @@ export const useFile = (setopen: any) => {
 
       await refetch();
       await processResponse(response);
+      return response;
     } catch (error) {
       processResponse(error);
     }
@@ -103,6 +104,7 @@ export const useVideoFile = (setopen: any) => {
 
       await refetch();
       await processResponse(response);
+      return response;
     } catch (error) {
       processResponse(error);
     }

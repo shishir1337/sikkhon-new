@@ -75,6 +75,7 @@ export class CourseController {
     @Body() payload: CreateEditCourseDto,
     @UserInfo() user: User,
   ) {
+    console.log({payload, user})
     return this.courseService.createEditCourse(payload, user);
   }
 

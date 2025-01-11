@@ -61,11 +61,11 @@ export class CreateCourseByAdminDto {
 
   @IsOptional()
   @IsNumber()
-  thumbnail_link: number;
+  thumbnail_link: string;
 
   @IsOptional()
   @IsNumber()
-  cover_image_link: number;
+  cover_image_link: string;
 
   @IsOptional()
   @IsString()

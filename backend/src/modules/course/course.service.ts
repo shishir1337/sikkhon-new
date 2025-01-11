@@ -73,9 +73,15 @@ export class CourseService {
       await courses.map((course) => {
         updatedCourses.push({
           ...course,
-          thumbnail_link: addPhotoPrefix(course.thumbnail_link),
-          cover_image_link: addPhotoPrefix(course.cover_image_link),
-          demo_video: addPhotoPrefix(course.demo_video),
+          thumbnail_link: course.thumbnail_link.startsWith('http')
+            ? course.thumbnail_link
+            : addPhotoPrefix(course.thumbnail_link),
+          cover_image_link: course.cover_image_link.startsWith('http')
+            ? course.cover_image_link
+            : addPhotoPrefix(course.cover_image_link),
+          demo_video: course.demo_video.startsWith('http')
+            ? course.demo_video
+            : addPhotoPrefix(course.demo_video),
         });
       });
       if (!courses || courses.length === 0) {
@@ -225,90 +231,105 @@ export class CourseService {
     user: User,
   ): Promise<ResponseModel> {
     try {
-      const edit = createEditCourseDto.id ? true : false;
+      const edit = !!createEditCourseDto.id;
       let exist;
+
+      console.log({ edit });
 
       if (createEditCourseDto.name) {
         exist = await PrismaClient.course.findUnique({
-          where: {
-            name: createEditCourseDto.name,
-          },
+          where: { name: createEditCourseDto.name },
         });
       }
 
       if (!edit && !createEditCourseDto.name) {
         return errorResponse('Please enter course name');
       }
+
       let category;
       if (createEditCourseDto.category_id) {
         category = await PrismaClient.category.findUnique({
-          where: {
-            id: createEditCourseDto.category_id,
-          },
+          where: { id: createEditCourseDto.category_id },
         });
       }
 
       let sub_category;
       if (createEditCourseDto.sub_category_id) {
         sub_category = await PrismaClient.subCategory.findUnique({
-          where: {
-            id: createEditCourseDto.sub_category_id,
-          },
+          where: { id: createEditCourseDto.sub_category_id },
         });
       }
 
-      if (!category && createEditCourseDto.category_id)
+      if (!category && createEditCourseDto.category_id) {
         return errorResponse('Category not found!');
-      if (!sub_category && createEditCourseDto.sub_category_id)
+      }
+      if (!sub_category && createEditCourseDto.sub_category_id) {
         return errorResponse('Sub Category not found');
+      }
       if (exist && !edit) {
-        return errorResponse('Course Name already exist please try another');
+        return errorResponse('Course Name already exists, please try another');
       }
       if (
-        createEditCourseDto.discount_status === true &&
+        createEditCourseDto.discount_status &&
         createEditCourseDto.discount_value <= 0
       ) {
         return errorResponse('Discount value must be greater than 0');
       }
+
       let slug;
       if (createEditCourseDto.name) {
         slug = await createSlug(createEditCourseDto.name);
       }
-      const thumbnail_link = createEditCourseDto.thumbnail_link
-        ? await PrismaClient.myUploads.findUnique({
-            where: {
-              id: createEditCourseDto.thumbnail_link,
-            },
-          })
-        : null;
-      const cover_image_link = createEditCourseDto.cover_image_link
-        ? await PrismaClient.myUploads.findUnique({
-            where: {
-              id: createEditCourseDto.cover_image_link,
-            },
-          })
-        : null;
-      let demo_video;
 
-      if (
-        createEditCourseDto.demo_video &&
-        !createEditCourseDto.video_upload_source
-      ) {
-        return errorResponse('Please select video upload source');
+      // Validate and fetch thumbnail link
+      // const thumbnailId = Number(createEditCourseDto.thumbnail_link);
+      // const thumbnail_link = !isNaN(thumbnailId)
+      //   ? await PrismaClient.myUploads.findUnique({
+      //       where: { id: thumbnailId },
+      //     })
+      //   : null;
+
+      const thumbnail_link = createEditCourseDto.thumbnail_link;
+      if (!thumbnail_link && createEditCourseDto.thumbnail_link) {
+        return errorResponse('Thumbnail ID is not valid');
       }
+
+      // // Validate and fetch cover image link
+      // const coverImageId = Number(createEditCourseDto.cover_image_link);
+      // const cover_image_link = !isNaN(coverImageId)
+      //   ? await PrismaClient.myUploads.findUnique({
+      //       where: { id: coverImageId },
+      //     })
+      //   : null;
+
+      const cover_image_link = createEditCourseDto.cover_image_link;
+
+      // if (!cover_image_link && createEditCourseDto.cover_image_link) {
+      //   return errorResponse('Cover image ID is not valid');
+      // }
+
+      // Validate and fetch demo video
+      let demo_video;
       if (
         createEditCourseDto.video_upload_source === UPLOAD_SOURCE.LOCAL &&
         createEditCourseDto.demo_video
       ) {
-        let getVideo = await PrismaClient.myUploads.findUnique({
-          where: {
-            id: parseInt(createEditCourseDto.demo_video),
-          },
-        });
-        if (!getVideo) {
-          return errorResponse('Video is not valid');
-        }
-        demo_video = getVideo.file_path;
+        // const demoVideoId = Number(createEditCourseDto.demo_video);
+
+        // if (isNaN(demoVideoId)) {
+        //   return errorResponse('Demo video ID is invalid');
+        // }
+
+        // const getVideo = await PrismaClient.myUploads.findUnique({
+        //   where: { id: demoVideoId },
+        // });
+
+        // if (!getVideo) {
+        //   return errorResponse('Video is not valid');
+        // }
+
+        // demo_video = getVideo.file_path;
+        demo_video = createEditCourseDto.demo_video;
       } else {
         demo_video = createEditCourseDto.demo_video;
       }
@@ -316,61 +337,62 @@ export class CourseService {
       if (!demo_video && createEditCourseDto.demo_video) {
         return errorResponse('Demo video is not valid');
       }
-      if (!thumbnail_link && createEditCourseDto.thumbnail_link) {
-        return errorResponse('Thumbnail id is not valid');
-      }
-      if (!cover_image_link && createEditCourseDto.cover_image_link) {
-        return errorResponse('Cover image id is not valid');
-      }
 
-      if (createEditCourseDto.discount_status === true && createEditCourseDto.discount_value <= 0) {
+      // Handle discount validation
+      if (
+        createEditCourseDto.discount_status &&
+        createEditCourseDto.discount_value <= 0
+      ) {
         return errorResponse('Discount value must be greater than 0');
       }
-
-      if(createEditCourseDto.discount_status === true && createEditCourseDto.discount_type === DISCOUNT_TYPE.PERCENTAGE)
-      {
-        if(createEditCourseDto.discount_value > 100)
-        {
-          return errorResponse('Discount value must be less than 100');
-        }
+      if (
+        createEditCourseDto.discount_status &&
+        createEditCourseDto.discount_type === DISCOUNT_TYPE.PERCENTAGE &&
+        createEditCourseDto.discount_value > 100
+      ) {
+        return errorResponse('Discount value must be less than 100');
       }
 
       let payable_price = createEditCourseDto.price;
 
-      if(createEditCourseDto.discount_status === true && createEditCourseDto.discount_type === DISCOUNT_TYPE.PERCENTAGE)
-      {
-        if(createEditCourseDto.discount_value > 100)
-        {
-          return errorResponse('Discount value must be less than 100');
+      if (
+        createEditCourseDto.discount_status &&
+        createEditCourseDto.discount_value
+      ) {
+        payable_price =
+          createEditCourseDto.price -
+          getTotalDiscountAmount(
+            createEditCourseDto.price,
+            createEditCourseDto.discount_value,
+            createEditCourseDto.discount_type,
+          );
+
+        if (payable_price <= 0) {
+          return errorResponse(
+            'Decrease Discount Value, because discount price cannot be less than 0!',
+          );
         }
       }
 
-      if (createEditCourseDto.discount_status === true && createEditCourseDto.discount_value) {
-        payable_price = createEditCourseDto.price - getTotalDiscountAmount(createEditCourseDto.price,createEditCourseDto.discount_value, createEditCourseDto.discount_type);
-      }
-      if (payable_price <= 0 ) {
-        return errorResponse('Decrease Discount Value, because discount price can not be less than 0!');
-      }
-
+      // Prepare data for Prisma
       let prepareData = {
         ...createEditCourseDto,
         instructorId: user.id,
-        ...(slug && { slug: slug }),
-        ...(payable_price && { payable_price: payable_price }),
+        ...(slug && { slug }),
+        ...(payable_price && { payable_price }),
         ...(cover_image_link && {
-          cover_image_link: cover_image_link.file_path,
+          cover_image_link: cover_image_link,
         }),
-        ...(demo_video && { demo_video: demo_video }),
-        ...(thumbnail_link && { thumbnail_link: thumbnail_link.file_path }),
+        ...(demo_video && { demo_video }),
+        ...(thumbnail_link && { thumbnail_link: thumbnail_link }),
         ...(exist && { slug: await createSlug(createEditCourseDto.name) }),
         ...(!createEditCourseDto.id && { status: coreConstant.STATUS_PENDING }),
       };
 
       if (edit) {
+        console.log({ prepareData });
         const updateCourse = await PrismaClient.course.update({
-          where: {
-            id: createEditCourseDto.id,
-          },
+          where: { id: createEditCourseDto.id },
           data: prepareData,
         });
 
@@ -630,16 +652,16 @@ export class CourseService {
         slug = await createSlug(payload.name);
       }
       const thumbnail_link = payload.thumbnail_link
-        ? await PrismaClient.myUploads.findUnique({
+        ? await PrismaClient.myUploads.findFirst({
             where: {
-              id: payload.thumbnail_link,
+              file_path: payload.thumbnail_link,
             },
           })
         : null;
       const cover_image_link = payload.cover_image_link
-        ? await PrismaClient.myUploads.findUnique({
+        ? await PrismaClient.myUploads.findFirst({
             where: {
-              id: payload.cover_image_link,
+              file_path: payload.cover_image_link,
             },
           })
         : null;
@@ -674,27 +696,34 @@ export class CourseService {
       if (!cover_image_link && payload.cover_image_link) {
         return errorResponse('Cover image id is not valid');
       }
-      
 
       if (payload.discount_status === true && payload.discount_value <= 0) {
         return errorResponse('Discount value must be greater than 0');
       }
 
-      if(payload.discount_status === true && payload.discount_type === DISCOUNT_TYPE.PERCENTAGE)
-      {
-        if(payload.discount_value > 100)
-        {
+      if (
+        payload.discount_status === true &&
+        payload.discount_type === DISCOUNT_TYPE.PERCENTAGE
+      ) {
+        if (payload.discount_value > 100) {
           return errorResponse('Discount value must be less than 100');
         }
       }
       let payable_price = payload.price;
       if (payload.discount_status === true && payload.discount_value) {
-        payable_price = payload.price - getTotalDiscountAmount(payload.price,payload.discount_value, payload.discount_type);
+        payable_price =
+          payload.price -
+          getTotalDiscountAmount(
+            payload.price,
+            payload.discount_value,
+            payload.discount_type,
+          );
       }
-      if (payable_price <= 0 ) {
-        return errorResponse('Decrease Discount Value, because discount price can not be less than 0!');
+      if (payable_price <= 0) {
+        return errorResponse(
+          'Decrease Discount Value, because discount price can not be less than 0!',
+        );
       }
-
 
       let prepareData = {
         ...payload,

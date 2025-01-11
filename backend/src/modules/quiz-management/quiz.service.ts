@@ -243,7 +243,7 @@ export class QuizService {
       }
 
       const file_url = payload.file_url
-        ? await fetchMyUploadFilePathById(payload.file_url)
+        ? await fetchMyUploadFilePathById(undefined, payload.file_url)
         : null;
 
       const quizQuestion = await PrismaClient.quizQuestion.create({
@@ -330,7 +330,7 @@ export class QuizService {
       }
 
       const file_url = payload.file_url
-        ? await fetchMyUploadFilePathById(payload.file_url)
+        ? await fetchMyUploadFilePathById(undefined, payload.file_url)
         : existsQuizQuestion.file_url;
 
       const quizQuestion = await PrismaClient.quizQuestion.update({
@@ -405,7 +405,7 @@ export class QuizService {
       }
 
       const file_url = payload.file_url
-        ? await fetchMyUploadFilePathById(payload.file_url)
+        ? await fetchMyUploadFilePathById(undefined, payload.file_url)
         : null;
 
       const answerDetails = await PrismaClient.quizQuestionAnswer.create({
@@ -494,7 +494,7 @@ export class QuizService {
       }
 
       const file_url = payload.file_url
-        ? await fetchMyUploadFilePathById(payload.file_url)
+        ? await fetchMyUploadFilePathById(undefined, payload.file_url)
         : existsQuestionAnswer.file_url;
 
       const answerDetails = await PrismaClient.quizQuestionAnswer.update({

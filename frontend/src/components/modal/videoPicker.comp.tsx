@@ -185,7 +185,8 @@ const VideoPicker = ({
                         type="button"
                         className="btn btn-primary"
                         onClick={() => {
-                          handleUpload().then(() => {
+                          handleUpload().then((data) => {
+                            setId(data.url);
                             setopen(false);
                           });
                         }}

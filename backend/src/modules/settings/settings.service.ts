@@ -211,14 +211,14 @@ export class SettingsService {
   async updateGeneralSettings(payload: UpdateGeneralSettingsDto) {
     try {
       const site_logo_path = payload.site_logo
-        ? await fetchMyUploadFilePathById(payload.site_logo)
+        ? await fetchMyUploadFilePathById(undefined, payload.site_logo)
         : await adminSettingsValueBySlug('site_logo');
       const site_fav_icon_path = payload.site_fav_icon
-        ? await fetchMyUploadFilePathById(payload.site_fav_icon)
+        ? await fetchMyUploadFilePathById(undefined, payload.site_fav_icon)
         : await adminSettingsValueBySlug('site_fav_icon');
 
       const site_footer_logo_path = payload.site_footer_logo
-        ? await fetchMyUploadFilePathById(payload.site_footer_logo)
+        ? await fetchMyUploadFilePathById(undefined, payload.site_footer_logo)
         : await adminSettingsValueBySlug('site_footer_logo');
 
       const keyValuePairs = Object.entries(payload).map(([key, value]) => {
@@ -332,6 +332,7 @@ export class SettingsService {
       const landing_main_banner_image_url =
         payload.landing_main_banner_image_url
           ? await fetchMyUploadFilePathById(
+              undefined,
               payload.landing_main_banner_image_url,
             )
           : await adminSettingsValueBySlug('landing_main_banner_image_url');
@@ -379,6 +380,7 @@ export class SettingsService {
       const landing_about_us_first_image_url =
         payload.landing_about_us_first_image_url
           ? await fetchMyUploadFilePathById(
+              undefined,
               payload.landing_about_us_first_image_url,
             )
           : await adminSettingsValueBySlug('landing_about_us_first_image_url');
@@ -386,6 +388,7 @@ export class SettingsService {
       const landing_about_us_second_image_url =
         payload.landing_about_us_second_image_url
           ? await fetchMyUploadFilePathById(
+              undefined,
               payload.landing_about_us_second_image_url,
             )
           : await adminSettingsValueBySlug('landing_about_us_second_image_url');
@@ -393,6 +396,7 @@ export class SettingsService {
       const landing_about_us_third_image_url =
         payload.landing_about_us_third_image_url
           ? await fetchMyUploadFilePathById(
+              undefined,
               payload.landing_about_us_third_image_url,
             )
           : await adminSettingsValueBySlug('landing_about_us_third_image_url');
@@ -460,6 +464,7 @@ export class SettingsService {
       const landing_choose_us_first_image_url =
         payload.landing_choose_us_first_image_url
           ? await fetchMyUploadFilePathById(
+              undefined,
               payload.landing_choose_us_first_image_url,
             )
           : await adminSettingsValueBySlug('landing_choose_us_first_image_url');
@@ -512,6 +517,7 @@ export class SettingsService {
       const landing_how_it_work_list_first_image_url =
         payload.landing_how_it_work_list_first_image_url
           ? await fetchMyUploadFilePathById(
+              undefined,
               payload.landing_how_it_work_list_first_image_url,
             )
           : await adminSettingsValueBySlug(
@@ -521,6 +527,7 @@ export class SettingsService {
       const landing_how_it_work_list_second_image_url =
         payload.landing_how_it_work_list_second_image_url
           ? await fetchMyUploadFilePathById(
+              undefined,
               payload.landing_how_it_work_list_second_image_url,
             )
           : await adminSettingsValueBySlug(
@@ -530,6 +537,7 @@ export class SettingsService {
       const landing_how_it_work_list_third_image_url =
         payload.landing_how_it_work_list_third_image_url
           ? await fetchMyUploadFilePathById(
+              undefined,
               payload.landing_how_it_work_list_third_image_url,
             )
           : await adminSettingsValueBySlug(

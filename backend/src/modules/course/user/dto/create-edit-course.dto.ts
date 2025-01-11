@@ -61,12 +61,12 @@ export class CreateEditCourseDto {
   discount_status?: boolean;
 
   @IsOptional()
-  @IsNumber()
-  thumbnail_link: number;
+  @IsString()
+  thumbnail_link: string;
 
   @IsOptional()
-  @IsNumber()
-  cover_image_link: number;
+  @IsString()
+  cover_image_link: string;
 
   @IsOptional()
   @IsString()

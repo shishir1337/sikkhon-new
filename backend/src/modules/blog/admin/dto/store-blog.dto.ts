@@ -30,11 +30,11 @@ export class StoreBlogDto {
 
   @IsNumber()
   @IsOptional()
-  thumbnail_link: number;
+  thumbnail_link: string;
 
   @IsNumber()
   @IsOptional()
-  cover_image_link: number;
+  cover_image_link: string;
 
   @IsString()
   @IsNotEmpty()

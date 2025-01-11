@@ -190,7 +190,7 @@ export class BlogService {
         : null;
 
       const meta_img_path = payload.meta_img
-        ? await fetchMyUploadFilePathById(payload.meta_img)
+        ? await fetchMyUploadFilePathById(undefined, payload.meta_img)
         : null;
 
       const existsBlogCategory = await PrismaClient.blogCategory.findFirst({
@@ -399,7 +399,7 @@ export class BlogService {
         : existsBlog.cover_image_link;
 
       const meta_img_path = payload.meta_img
-        ? await fetchMyUploadFilePathById(payload.meta_img)
+        ? await fetchMyUploadFilePathById(undefined, payload.meta_img)
         : existsBlog.meta_img;
 
       const existsBlogCategory = await PrismaClient.blogCategory.findFirst({

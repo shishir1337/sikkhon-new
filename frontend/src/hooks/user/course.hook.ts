@@ -339,6 +339,7 @@ export const useAddEditCourseFormHandler = () => {
           queryClient.invalidateQueries(["courseListsForInstructor"]);
         }
       },
+      onError: (err) => {console.log({err})},
     }
   );
 
