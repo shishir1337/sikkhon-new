@@ -6,9 +6,10 @@ export default function CustomImage({
   customWidth = 500,
   customClassName = "",
 }: any) {
+  const linkContain = imageUrl?.replaceAll('http://localhost:3005', '');
   return (
     <Image
-      src={imageUrl}
+      src={linkContain}
       priority
       quality={100}
       alt="Alt Pic"

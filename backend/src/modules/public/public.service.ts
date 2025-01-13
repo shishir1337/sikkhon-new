@@ -89,13 +89,16 @@ export class PublicService {
         take: 10,
       });
       courseList.map((courseDetails) => {
-        courseDetails.thumbnail_link = courseDetails.thumbnail_link
+        courseDetails.thumbnail_link = courseDetails.thumbnail_link.startsWith(
+          'http',
+        )
           ? addPhotoPrefix(courseDetails.thumbnail_link)
           : courseDetails.thumbnail_link;
 
-        courseDetails.cover_image_link = courseDetails.cover_image_link
-          ? addPhotoPrefix(courseDetails.cover_image_link)
-          : courseDetails.cover_image_link;
+        courseDetails.cover_image_link =
+          courseDetails.cover_image_link.startsWith('http')
+            ? addPhotoPrefix(courseDetails.cover_image_link)
+            : courseDetails.cover_image_link;
         courseDetails.User.photo = courseDetails.User.photo
           ? addPhotoPrefix(courseDetails.User.photo)
           : courseDetails.User.photo;
@@ -168,11 +171,19 @@ export class PublicService {
       });
 
       blogList.map((blogDetails) => {
-        blogDetails.thumbnail_link = addPhotoPrefix(blogDetails.thumbnail_link);
-        blogDetails.meta_img = addPhotoPrefix(blogDetails.meta_img);
-        blogDetails.cover_image_link = addPhotoPrefix(
-          blogDetails.cover_image_link,
-        );
+        blogDetails.thumbnail_link = blogDetails.thumbnail_link.startsWith(
+          'http',
+        )
+          ? blogDetails.thumbnail_link
+          : addPhotoPrefix(blogDetails.thumbnail_link);
+        blogDetails.meta_img = blogDetails.meta_img.startsWith('http')
+          ? blogDetails.meta_img
+          : addPhotoPrefix(blogDetails.meta_img);
+        blogDetails.cover_image_link = blogDetails.cover_image_link.startsWith(
+          'http',
+        )
+          ? blogDetails.cover_image_link
+          : addPhotoPrefix(blogDetails.cover_image_link);
       });
       const landingData = {
         landing_data: data,

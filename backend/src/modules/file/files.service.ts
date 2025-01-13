@@ -41,7 +41,9 @@ export class FilesService {
       // Map through the myFiles array and apply addPhotoPrefix to file_path field
       const filesWithPrefix = myFiles.map((file) => ({
         ...file,
-        file_path: addPhotoPrefix(file.file_path),
+        file_path: file.file_path?.startsWith('http')
+          ? file.file_path
+          : addPhotoPrefix(file.file_path),
       }));
 
       return successResponse('Upload successful', filesWithPrefix);
@@ -71,7 +73,9 @@ export class FilesService {
       // Map through the myFiles array and apply addPhotoPrefix to file_path field
       const filesWithPrefix = myFiles.map((file) => ({
         ...file,
-        file_path: addPhotoPrefix(file.file_path),
+        file_path: file.file_path?.startsWith('http')
+          ? file.file_path
+          : addPhotoPrefix(file.file_path),
       }));
 
       return successResponse('Upload successful', filesWithPrefix);
@@ -82,31 +86,37 @@ export class FilesService {
 
   async uploadFile(file: Express.Multer.File): Promise<{ url: string }> {
     const minioClient = this.minioConfig.getClient();
-  
+
     try {
       const originalFilename = file.originalname;
       const sanitizedFileName = originalFilename
         .replace(/\s+/g, '-') // Replace spaces with hyphens
         .replace(/[\/\\:*?"<>|]/g, '-'); // Replace invalid characters
       const uniqueFilename = `${Date.now()}-${sanitizedFileName}`;
-  
+
       // Check if the bucket exists; if not, create it
       const bucketExists = await minioClient.bucketExists(this.bucketName);
       if (!bucketExists) {
         await minioClient.makeBucket(this.bucketName, 'us-east-1');
       }
-  
+
       // Use the buffer directly
       const fileBuffer = file.buffer;
       if (!fileBuffer) {
         throw new Error('File buffer is undefined');
       }
-  
+
       // Upload to MinIO
-      await minioClient.putObject(this.bucketName, uniqueFilename, fileBuffer, fileBuffer.length, {
-        'Content-Type': file.mimetype, // Set MIME type for the file
-      });
-  
+      await minioClient.putObject(
+        this.bucketName,
+        uniqueFilename,
+        fileBuffer,
+        fileBuffer.length,
+        {
+          'Content-Type': file.mimetype, // Set MIME type for the file
+        },
+      );
+
       return {
         url: `https://${process.env.MINIO_ENDPOINT}/${this.bucketName}/${uniqueFilename}`,
       };
@@ -115,5 +125,4 @@ export class FilesService {
       throw new InternalServerErrorException('Failed to upload file');
     }
   }
-  
 }

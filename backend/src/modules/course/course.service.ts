@@ -73,13 +73,13 @@ export class CourseService {
       await courses.map((course) => {
         updatedCourses.push({
           ...course,
-          thumbnail_link: course.thumbnail_link.startsWith('http')
+          thumbnail_link: course.thumbnail_link?.startsWith('http')
             ? course.thumbnail_link
             : addPhotoPrefix(course.thumbnail_link),
-          cover_image_link: course.cover_image_link.startsWith('http')
+          cover_image_link: course.cover_image_link?.startsWith('http')
             ? course.cover_image_link
             : addPhotoPrefix(course.cover_image_link),
-          demo_video: course.demo_video.startsWith('http')
+          demo_video: course.demo_video?.startsWith('http')
             ? course.demo_video
             : addPhotoPrefix(course.demo_video),
         });
@@ -185,16 +185,19 @@ export class CourseService {
       if (!course_details) {
         return errorResponse('Course not found');
       }
-      course_details.thumbnail_link = await addPhotoPrefix(
-        course_details.thumbnail_link,
-      );
-      course_details.cover_image_link = await addPhotoPrefix(
-        course_details.cover_image_link,
-      );
+      course_details.thumbnail_link = course_details.thumbnail_link?.startsWith(
+        'http',
+      )
+        ? course_details.thumbnail_link
+        : addPhotoPrefix(course_details.thumbnail_link);
+      course_details.cover_image_link =
+        course_details.cover_image_link?.startsWith('http')
+          ? course_details.cover_image_link
+          : addPhotoPrefix(course_details.cover_image_link);
       if (course_details.video_upload_source === UPLOAD_SOURCE.LOCAL) {
-        course_details.demo_video = await addPhotoPrefix(
-          course_details.demo_video,
-        );
+        course_details.demo_video = course_details.demo_video?.startsWith('http')
+          ? course_details.demo_video
+          : addPhotoPrefix(course_details.demo_video);
       }
 
       return successResponse('Courses found Successfully', course_details);
@@ -493,9 +496,15 @@ export class CourseService {
       });
 
       courseList.map((course) => {
-        (course.thumbnail_link = addPhotoPrefix(course.thumbnail_link)),
-          (course.cover_image_link = addPhotoPrefix(course.cover_image_link)),
-          (course.demo_video = addPhotoPrefix(course.demo_video));
+        (course.thumbnail_link = course.thumbnail_link?.startsWith('http')
+          ? course.thumbnail_link
+          : addPhotoPrefix(course.thumbnail_link)),
+          (course.cover_image_link = course.cover_image_link?.startsWith('http')
+            ? course.cover_image_link
+            : addPhotoPrefix(course.cover_image_link)),
+          (course.demo_video = course.demo_video?.startsWith('http')
+            ? course.demo_video
+            : addPhotoPrefix(course.demo_video));
       });
 
       const data = {
@@ -523,14 +532,19 @@ export class CourseService {
       if (!course_details) {
         return errorResponse('Course not found');
       }
-      course_details.thumbnail_link = addPhotoPrefix(
-        course_details.thumbnail_link,
-      );
-      course_details.cover_image_link = addPhotoPrefix(
-        course_details.cover_image_link,
-      );
+      course_details.thumbnail_link = course_details.thumbnail_link?.startsWith(
+        'http',
+      )
+        ? course_details.thumbnail_link
+        : addPhotoPrefix(course_details.thumbnail_link);
+      course_details.cover_image_link =
+        course_details.cover_image_link?.startsWith('http')
+          ? course_details.cover_image_link
+          : addPhotoPrefix(course_details.cover_image_link);
       if (course_details.video_upload_source === UPLOAD_SOURCE.LOCAL) {
-        course_details.demo_video = addPhotoPrefix(course_details.demo_video);
+        course_details.demo_video = course_details.demo_video?.startsWith('http')
+          ? course_details.demo_video
+          : addPhotoPrefix(course_details.demo_video);
       }
 
       return successResponse('Courses found Successfully', course_details);
@@ -982,9 +996,15 @@ export class CourseService {
       const coursesWithLessonCount: any = await Promise.all(
         courseList.map(async (course) => {
           course['lession_count'] = course.Lesson.length;
-          course.thumbnail_link = addPhotoPrefix(course.thumbnail_link);
-          course.cover_image_link = addPhotoPrefix(course.cover_image_link);
-          course.demo_video = addPhotoPrefix(course.demo_video);
+          course.thumbnail_link = course.thumbnail_link?.startsWith('http')
+            ? course.thumbnail_link
+            : addPhotoPrefix(course.thumbnail_link);
+          course.cover_image_link = course.cover_image_link?.startsWith('http')
+            ? course.cover_image_link
+            : addPhotoPrefix(course.cover_image_link);
+          course.demo_video = course.demo_video?.startsWith('http')
+            ? course.demo_video
+            : addPhotoPrefix(course.demo_video);
           course.User.photo = course.User.photo
             ? addPhotoPrefix(course.User.photo)
             : course.User.photo;
@@ -1111,13 +1131,18 @@ export class CourseService {
         return errorResponse('Invalid Request!');
       }
 
-      courseDetails.thumbnail_link = addPhotoPrefix(
-        courseDetails.thumbnail_link,
-      );
-      courseDetails.cover_image_link = addPhotoPrefix(
-        courseDetails.cover_image_link,
-      );
-      courseDetails.demo_video = addPhotoPrefix(courseDetails.demo_video);
+      courseDetails.thumbnail_link = courseDetails.thumbnail_link?.startsWith(
+        'http',
+      )
+        ? courseDetails.thumbnail_link
+        : addPhotoPrefix(courseDetails.thumbnail_link);
+      courseDetails.cover_image_link =
+        courseDetails.cover_image_link?.startsWith('http')
+          ? courseDetails.cover_image_link
+          : addPhotoPrefix(courseDetails.cover_image_link);
+      courseDetails.demo_video = courseDetails.demo_video?.startsWith('http')
+        ? courseDetails.demo_video
+        : addPhotoPrefix(courseDetails.demo_video);
 
       courseDetails.User.photo = courseDetails.User.photo
         ? addPhotoPrefix(courseDetails.User.photo)
@@ -1289,15 +1314,20 @@ export class CourseService {
         return errorResponse('Invalid Request!');
       }
 
-      courseDetails.thumbnail_link = addPhotoPrefix(
-        courseDetails.thumbnail_link,
-      );
-      courseDetails.cover_image_link = addPhotoPrefix(
-        courseDetails.cover_image_link,
-      );
+      courseDetails.thumbnail_link = courseDetails.thumbnail_link?.startsWith(
+        'http',
+      )
+        ? courseDetails.thumbnail_link
+        : addPhotoPrefix(courseDetails.thumbnail_link);
+      courseDetails.cover_image_link =
+        courseDetails.cover_image_link?.startsWith('http')
+          ? courseDetails.cover_image_link
+          : addPhotoPrefix(courseDetails.cover_image_link);
 
       if (courseDetails.video_upload_source === UPLOAD_SOURCE.LOCAL) {
-        courseDetails.demo_video = addPhotoPrefix(courseDetails.demo_video);
+        courseDetails.demo_video = courseDetails.demo_video?.startsWith('http')
+          ? courseDetails.demo_video
+          : addPhotoPrefix(courseDetails.demo_video);
       }
 
       courseDetails.Section.map((section) => {
@@ -1307,7 +1337,9 @@ export class CourseService {
               ? lession.UserLession[0].is_completed
               : false;
           delete lession.UserLession;
-          lession.video_url = addPhotoPrefix(lession.video_url);
+          lession.video_url = lession.video_url?.startsWith('http')
+            ? lession.video_url
+            : addPhotoPrefix(lession.video_url);
         });
         section.Quiz.map((quiz) => {
           quiz['is_completed'] =
@@ -1478,8 +1510,12 @@ export class CourseService {
             totalCompleted++;
           }
         });
-        course.thumbnail_link = addPhotoPrefix(course.thumbnail_link);
-        course.cover_image_link = addPhotoPrefix(course.cover_image_link);
+        course.thumbnail_link = course.thumbnail_link?.startsWith('http')
+          ? course.thumbnail_link
+          : addPhotoPrefix(course.thumbnail_link);
+        course.cover_image_link = course.cover_image_link?.startsWith('http')
+          ? course.cover_image_link
+          : addPhotoPrefix(course.cover_image_link);
         course['total_enrolled'] = course.CourseEnrollment.length;
         course['completed_course'] = totalCompleted;
         course['total_review'] = course.Review.length;
@@ -1514,7 +1550,9 @@ export class CourseService {
       });
 
       courseList.map((course) => {
-        course.thumbnail_link = addPhotoPrefix(course.thumbnail_link);
+        course.thumbnail_link = course.thumbnail_link?.startsWith('http')
+          ? course.thumbnail_link
+          : addPhotoPrefix(course.thumbnail_link);
       });
 
       return successResponse('Course list by search!', courseList);

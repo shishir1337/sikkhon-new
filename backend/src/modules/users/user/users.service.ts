@@ -107,7 +107,9 @@ export class UsersService {
       let last_courses = [];
       userInfo?.Course?.slice(0, 5)?.forEach((item) => {
         let local = { ...item };
-        local.thumbnail_link = addPhotoPrefix(local.thumbnail_link);
+        local.thumbnail_link = local.thumbnail_link?.startsWith('http')
+          ? local.thumbnail_link
+          : addPhotoPrefix(local.thumbnail_link);
         last_courses.push(local);
       });
       const startDate = new Date();

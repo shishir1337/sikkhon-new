@@ -85,7 +85,7 @@ export class WishListService {
             });
 
             wishList.map(async(wishlistdetails)=>{
-                wishlistdetails.Course.thumbnail_link = addPhotoPrefix(wishlistdetails.Course.thumbnail_link)
+                wishlistdetails.Course.thumbnail_link = wishlistdetails.Course.thumbnail_link.startsWith('http') ? wishlistdetails.Course.thumbnail_link : addPhotoPrefix(wishlistdetails.Course.thumbnail_link)
                 wishlistdetails.Course.User.photo = addPhotoPrefix(wishlistdetails.Course.User.photo)
                 delete wishlistdetails.Course.User.password
             })

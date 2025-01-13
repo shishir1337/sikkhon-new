@@ -347,9 +347,15 @@ export class BlogService {
       });
 
       blogList.map((blog) => {
-        blog.cover_image_link = addPhotoPrefix(blog.cover_image_link);
-        blog.meta_img = addPhotoPrefix(blog.meta_img);
-        blog.thumbnail_link = addPhotoPrefix(blog.thumbnail_link);
+        blog.cover_image_link = blog.cover_image_link?.startsWith('http')
+          ? blog.cover_image_link
+          : addPhotoPrefix(blog.cover_image_link);
+        blog.meta_img = blog.meta_img?.startsWith('http')
+          ? blog.meta_img
+          : addPhotoPrefix(blog.meta_img);
+        blog.thumbnail_link = blog.thumbnail_link?.startsWith('http')
+          ? blog.thumbnail_link
+          : addPhotoPrefix(blog.thumbnail_link);
       });
 
       const data = {
@@ -451,11 +457,17 @@ export class BlogService {
         return errorResponse('Invalid Request!');
       }
 
-      blogDetails.cover_image_link = addPhotoPrefix(
-        blogDetails.cover_image_link,
-      );
-      blogDetails.meta_img = addPhotoPrefix(blogDetails.meta_img);
-      blogDetails.thumbnail_link = addPhotoPrefix(blogDetails.thumbnail_link);
+      blogDetails.cover_image_link = blogDetails.cover_image_link.startsWith(
+        'http',
+      )
+        ? blogDetails.cover_image_link
+        : addPhotoPrefix(blogDetails.cover_image_link);
+      blogDetails.meta_img = blogDetails.meta_img.startsWith('http')
+        ? blogDetails.meta_img
+        : addPhotoPrefix(blogDetails.meta_img);
+      blogDetails.thumbnail_link = blogDetails.thumbnail_link.startsWith('http')
+        ? blogDetails.thumbnail_link
+        : addPhotoPrefix(blogDetails.thumbnail_link);
 
       return successResponse('Blog details', blogDetails);
     } catch (error) {
@@ -721,9 +733,15 @@ export class BlogService {
       });
 
       blogList.map((blog) => {
-        blog.cover_image_link = addPhotoPrefix(blog.cover_image_link);
-        blog.meta_img = addPhotoPrefix(blog.meta_img);
-        blog.thumbnail_link = addPhotoPrefix(blog.thumbnail_link);
+        blog.cover_image_link = blog.cover_image_link.startsWith('http')
+          ? blog.cover_image_link
+          : addPhotoPrefix(blog.cover_image_link);
+        blog.meta_img = blog.meta_img.startsWith('http')
+          ? blog.meta_img
+          : addPhotoPrefix(blog.meta_img);
+        blog.thumbnail_link = blog.thumbnail_link.startsWith('http')
+          ? blog.thumbnail_link
+          : addPhotoPrefix(blog.thumbnail_link);
       });
 
       const data = {
@@ -784,11 +802,17 @@ export class BlogService {
         return errorResponse('Invalid Request!');
       }
 
-      blogDetails.cover_image_link = addPhotoPrefix(
-        blogDetails.cover_image_link,
-      );
-      blogDetails.meta_img = addPhotoPrefix(blogDetails.meta_img);
-      blogDetails.thumbnail_link = addPhotoPrefix(blogDetails.thumbnail_link);
+      blogDetails.cover_image_link = blogDetails.cover_image_link.startsWith(
+        'http',
+      )
+        ? blogDetails.cover_image_link
+        : addPhotoPrefix(blogDetails.cover_image_link);
+      blogDetails.meta_img = blogDetails.meta_img.startsWith('http')
+        ? blogDetails.meta_img
+        : addPhotoPrefix(blogDetails.meta_img);
+      blogDetails.thumbnail_link = blogDetails.thumbnail_link.startsWith('http')
+        ? blogDetails.thumbnail_link
+        : addPhotoPrefix(blogDetails.thumbnail_link);
       blogDetails.categories = [];
 
       // Iterate through active categories
@@ -823,9 +847,15 @@ export class BlogService {
       });
 
       recentPosts.forEach((post) => {
-        post.cover_image_link = addPhotoPrefix(post.cover_image_link);
-        post.meta_img = addPhotoPrefix(post.meta_img);
-        post.thumbnail_link = addPhotoPrefix(post.thumbnail_link);
+        post.cover_image_link = post.cover_image_link.startsWith('http')
+          ? post.cover_image_link
+          : addPhotoPrefix(post.cover_image_link);
+        post.meta_img = post.meta_img.startsWith('http')
+          ? post.meta_img
+          : addPhotoPrefix(post.meta_img);
+        post.thumbnail_link = post.thumbnail_link.startsWith('http')
+          ? post.thumbnail_link
+          : addPhotoPrefix(post.thumbnail_link);
       });
 
       blogDetails.recentPosts = recentPosts;

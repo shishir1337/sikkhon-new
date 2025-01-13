@@ -41,8 +41,12 @@ export function addPhotoPrefix(inputString: string): string {
 export function processCourseLinks(course: any): any {
   const processedCourse = {
     ...course,
-    thumbnail_link: addPhotoPrefix(course.thumbnail_link),
-    cover_image_link: addPhotoPrefix(course.cover_image_link),
+    thumbnail_link: course.thumbnail_link.startsWith('http')
+      ? course.thumbnail_link
+      : addPhotoPrefix(course.thumbnail_link),
+    cover_image_link: course.cover_image_link.startsWith('http')
+      ? course.cover_image_link
+      : addPhotoPrefix(course.cover_image_link),
     demo_video:
       course.video_upload_source === UPLOAD_SOURCE.LOCAL && course.demo_video
         ? addPhotoPrefix(course.demo_video)

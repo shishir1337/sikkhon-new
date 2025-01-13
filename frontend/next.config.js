@@ -1,20 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // images: {
+  //   remotePatterns: [
+  //     {
+  //       protocol: "https",
+  //       hostname: "*",
+  //       port: "",
+  //       pathname: "**",
+  //     },
+  //     {
+  //       protocol: "http",
+  //       hostname: "localhost",
+  //       port: "3005",
+  //       pathname: "/storage/**",
+  //     },
+  //   ],
+  // },
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "*",
-        port: "",
-        pathname: "**",
-      },
-      {
-        protocol: "http",
-        hostname: "localhost",
-        port: "3005",
-        pathname: "/storage/**",
-      },
-    ],
+    domains: ['media.dizishore.com'], // Add your hostname here
   },
   eslint: {
     dirs: ["src"],

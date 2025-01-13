@@ -129,9 +129,10 @@ export class LiveClassService {
         ...paginate,
       });
       liveClasses.map((liveClass) => {
-        liveClass.Course.thumbnail_link = addPhotoPrefix(
-          liveClass.Course.thumbnail_link,
-        );
+        liveClass.Course.thumbnail_link =
+          liveClass.Course.thumbnail_link?.startsWith('http')
+            ? liveClass.Course.thumbnail_link
+            : addPhotoPrefix(liveClass.Course.thumbnail_link);
       });
       const data = {
         list: liveClasses,

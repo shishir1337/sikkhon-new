@@ -261,7 +261,9 @@ export class AdminService {
 
       const formattedLatestCourses = latestCourses.map((course) => ({
         ...course,
-        thumbnail_link: addPhotoPrefix(course.thumbnail_link),
+        thumbnail_link: course.thumbnail_link?.startsWith('http')
+          ? course.thumbnail_link
+          : addPhotoPrefix(course.thumbnail_link),
       }));
 
       const withdrawTransactions =

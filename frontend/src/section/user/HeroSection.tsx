@@ -77,7 +77,7 @@ function CourseCard({ course }: { course: Course }) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <Badge className="absolute top-2 right-2 text-xs" variant="secondary">
-          {course.category.name}
+          {course.category?.name}
         </Badge>
       </div>
       <div className="p-4">
@@ -86,7 +86,7 @@ function CourseCard({ course }: { course: Course }) {
         </h3>
         <div className="flex items-center mb-2 text-sm text-gray-600">
           <Image 
-            src={course.User.photo || '/placeholder.svg?height=100&width=100'} 
+            src={course.User?.photo || '/placeholder.svg?height=100&width=100'} 
             alt={`${course.User.first_name} ${course.User.last_name}`} 
             width={24} 
             height={24} 
