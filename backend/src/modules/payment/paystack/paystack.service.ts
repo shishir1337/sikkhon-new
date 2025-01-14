@@ -61,7 +61,7 @@ export class PayStackService {
         )}_${type}_${reference}`,
         callback_url: credential.redirect_url
           ? credential.redirect_url
-          : 'http://localhost:3001/upgrade',
+          : 'http://localhost:3004/upgrade',
       };
 
       const headers = {
