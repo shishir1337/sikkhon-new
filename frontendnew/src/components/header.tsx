@@ -42,7 +42,7 @@ const Header = () => {
     <header
       className={cn(
         "sticky top-0 z-50 w-full bg-white shadow-subtle",
-        isScrolled ? "bg-white shadow-subtle" : "bg-white/0"
+        isScrolled ? "bg-white shadow-subtle" : "bg-white"
       )}
     >
       <div className="max-w-[1230px] mx-auto px-2 sm:px-4 lg:px-6">
@@ -122,6 +122,7 @@ const Header = () => {
                 height={29}
                 className="h-8 w-auto sm:h-8 transition-transform duration-300 ease-in-out"
                 priority
+                quality={100}
               />
             </Link>
           </div>
@@ -161,18 +162,16 @@ const Header = () => {
                   >
                     Courses
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <NavigationMenuContent className="w-[200px]">
+                    <ul className="grid w-[200px] gap-3 p-4">
                       {[
                         {
                           title: "Free Courses",
                           href: "/courses/free",
-                          description: "Start learning with our free courses",
                         },
                         {
                           title: "Paid Courses",
                           href: "/courses/paid",
-                          description: "Premium courses with in-depth content",
                         },
                       ].map((item) => (
                         <ListItem
@@ -180,7 +179,6 @@ const Header = () => {
                           title={item.title}
                           href={item.href}
                         >
-                          {item.description}
                         </ListItem>
                       ))}
                     </ul>

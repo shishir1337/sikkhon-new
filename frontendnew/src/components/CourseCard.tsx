@@ -1,9 +1,7 @@
 "use client"
 
-import { useState } from "react"
 import Image from "next/image"
 import { Star, Book, Users } from "lucide-react"
-import { motion } from "framer-motion"
 
 interface Instructor {
   name: string
@@ -33,23 +31,15 @@ export default function CourseCard({
   enrolledStudents,
   rating,
 }: CourseCardProps) {
-  const [isHovered, setIsHovered] = useState(false)
-
   return (
-    <motion.div
-      className="rounded-xl overflow-hidden shadow-lg bg-white transition-all duration-300 ease-in-out"
-      whileHover={{ scale: 1.00 }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-    >
-      <div className="relative">  
+    <div className="rounded-xl overflow-hidden shadow-lg bg-white transition-all duration-300 ease-in-out hover:scale-[1.02]">
+      <div className="relative">
         <Image
           src={thumbnail || "/placeholder.svg"}
           alt={title}
           width={384}
           height={216}
-          className="w-full h-48 object-cover transition-all duration-300 ease-in-out"
-          style={{ transform: isHovered ? "scale(1.00)" : "scale(1)" }}
+          className="w-full h-48 object-cover"
         />
         <div className="absolute top-2 right-2 bg-blue-950 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-md">
           ${discountedPrice.toFixed(2)}
@@ -90,15 +80,11 @@ export default function CourseCard({
         </div>
       </div>
       <div className="px-6 py-4">
-        <motion.button
-          className="w-full bg-blue-950 hover:bg-blue-900 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 ease-in-out"
-          whileHover={{ scale: 1.00 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Enroll Now
-        </motion.button>
+        <button className="w-full bg-blue-950 hover:bg-blue-900 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 ease-in-out">
+          Add to Cart
+        </button>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
