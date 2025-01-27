@@ -36,8 +36,8 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300",
-        isScrolled ? "bg-white shadow-subtle" : "bg-transparent",
+        "sticky top-0 z-50 w-full bg-white shadow-subtle",
+        isScrolled ? "bg-white shadow-subtle" : "bg-white/0",
       )}
     >
       <div className="max-w-[1230px] mx-auto px-2 sm:px-4 lg:px-6">

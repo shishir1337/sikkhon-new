@@ -8,6 +8,12 @@ const nextConfig = {
                 port: '',
                 pathname: '/sikkhon.com/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'avatar.iran.liara.run',
+                port: '',
+                pathname: '/public/**',
+            },
         ]
     }
 };
