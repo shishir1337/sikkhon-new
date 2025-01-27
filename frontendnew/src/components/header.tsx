@@ -18,6 +18,9 @@ import {
 } from "@/components/ui/navigation-menu"
 import { cn } from "@/lib/utils"
 import { MiniCart } from "@/components/mini-cart"
+import { Nunito } from "next/font/google"
+
+const nunito = Nunito({ subsets: ["latin"] })
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = React.useState(false)
@@ -34,12 +37,10 @@ const Header = () => {
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
-        isScrolled
-          ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-subtle"
-          : "bg-transparent",
+        isScrolled ? "bg-white shadow-subtle" : "bg-transparent",
       )}
     >
-      <div className="container px-4 md:px-6 mx-auto">
+      <div className="max-w-[1230px] mx-auto px-2 sm:px-4 lg:px-6">
         <div className="flex h-16 md:h-20 items-center justify-between">
           {/* Mobile: Hamburger Menu */}
           <Sheet>
@@ -59,27 +60,30 @@ const Header = () => {
                   <Input type="search" placeholder="Search courses..." className="w-full pl-9 rounded-full" />
                 </div>
                 <nav className="flex flex-col space-y-4">
-                  <Link href="/" className="text-sm font-medium hover:text-brand-blue transition-colors cursor-pointer">
+                  <Link
+                    href="/"
+                    className={`text-sm font-bold hover:text-brand-blue transition-colors cursor-pointer ${nunito.className}`}
+                  >
                     Home
                   </Link>
                   <div className="space-y-3">
-                    <h4 className="text-sm font-medium">Courses</h4>
+                    <h4 className={`text-sm font-bold ${nunito.className}`}>Courses</h4>
                     <Link
                       href="/courses/free"
-                      className="block text-sm text-muted-foreground hover:text-brand-blue transition-colors cursor-pointer"
+                      className={`block text-sm text-muted-foreground hover:text-brand-blue transition-colors cursor-pointer ${nunito.className}`}
                     >
                       Free Courses
                     </Link>
                     <Link
                       href="/courses/paid"
-                      className="block text-sm text-muted-foreground hover:text-brand-blue transition-colors cursor-pointer"
+                      className={`block text-sm text-muted-foreground hover:text-brand-blue transition-colors cursor-pointer ${nunito.className}`}
                     >
                       Paid Courses
                     </Link>
                   </div>
                   <Link
                     href="/blog"
-                    className="text-sm font-medium hover:text-brand-blue transition-colors cursor-pointer"
+                    className={`text-sm font-bold hover:text-brand-blue transition-colors cursor-pointer ${nunito.className}`}
                   >
                     Blog
                   </Link>
@@ -101,8 +105,8 @@ const Header = () => {
                 src="/logo.png"
                 alt="Sikkhon Logo"
                 width={120}
-                height={40}
-                className="h-8 w-auto sm:h-10 transition-transform duration-300 ease-in-out"
+                height={29}
+                className="h-8 w-auto sm:h-8 transition-transform duration-300 ease-in-out"
                 priority
               />
             </Link>
@@ -125,13 +129,22 @@ const Header = () => {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <Link href="/" legacyBehavior passHref>
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}>
+                    <NavigationMenuLink
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        "cursor-pointer",
+                        nunito.className,
+                        "text-[16.5px] font-bold",
+                      )}
+                    >
                       Home
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger>Courses</NavigationMenuTrigger>
+                  <NavigationMenuTrigger className={cn(nunito.className, "text-[16.5px] font-bold")}>
+                    Courses
+                  </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                       {[
@@ -155,7 +168,14 @@ const Header = () => {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link href="/blog" legacyBehavior passHref>
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}>
+                    <NavigationMenuLink
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        "cursor-pointer",
+                        nunito.className,
+                        "text-[16.5px] font-bold",
+                      )}
+                    >
                       Blog
                     </NavigationMenuLink>
                   </Link>
@@ -192,6 +212,7 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
             className={cn(
               "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer",
               className,
+              nunito.className,
             )}
             {...props}
           >
