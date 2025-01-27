@@ -1,7 +1,7 @@
 import { Nunito } from "next/font/google"
 import { User } from "lucide-react"
 import Link from "next/link"
-import CourseCard from "@/components/CourseCard"
+import CourseCard from "../CourseCard"
 
 const nunito = Nunito({ subsets: ["latin"] })
 
@@ -16,7 +16,8 @@ export default function HeroSection() {
         avatar: "https://avatar.iran.liara.run/public/1",
       },
       title: "Microsoft Excel Essentials Training (Bangla)",
-      description: "This is a full course in Microsoft Office Excel 2007, you will learn full MS Excel in Bangla for free.",
+      description:
+        "This is a full course in Microsoft Office Excel 2007, you will learn full MS Excel in Bangla for free.",
       totalLessons: 39,
       enrolledStudents: 211,
       rating: 4.7,
@@ -30,7 +31,8 @@ export default function HeroSection() {
         avatar: "https://avatar.iran.liara.run/public/2",
       },
       title: "Freshdesk Omnichannel Crash Course",
-      description: "You are a part of a support team and you have just started using Freshdesk or you are already using it but didn’t find your away around it and still feel rusty when it comes to dealing with Freshdesk, no worries – We got you! This short-crashing course is all about making you get around Freshdesk features and navigating easily within the platform as if you have been using it for ages.",
+      description:
+        "You are a part of a support team and you have just started using Freshdesk or you are already using it but didn’t find your away around it and still feel rusty when it comes to dealing with Freshdesk, no worries – We got you! This short-crashing course is all about making you get around Freshdesk features and navigating easily within the platform as if you have been using it for ages.",
       totalLessons: 9,
       enrolledStudents: 17,
       rating: 4.9,
@@ -43,7 +45,7 @@ export default function HeroSection() {
       style={{ backgroundImage: "url(/Sikkhon_Home_Background.webp)" }}
     >
       <div className="absolut"></div>
-      <div className="relative z-10 max-w-[1230px] mx-auto px-4">
+      <div className="relative z-10 container px-4">
         <div className="flex flex-col lg:flex-row items-center justify-between">
           <div className="lg:w-1/2 mb-8 lg:mb-0 lg:pr-8">
             <h1 className={`${nunito.className} text-4xl md:text-5xl font-extrabold leading-tight mb-6 text-black`}>

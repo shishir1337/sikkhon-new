@@ -7,8 +7,8 @@ import Footer from "@/components/footer"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Sikkhon - Online Learning Platform",
-  description: "Discover a world of knowledge with Sikkhon's online courses",
+  title: "eLearning and Skill Development Platform | Distance Learning Providers",
+  description: "Elevate your learning journey with Sikkhon, a leading eLearning and skill development platform. Explore top-notch courses in Bangla from the best distance learning providers. Unlock your potential with our comprehensive eLearning platform. Start learning today!",
 }
 
 export default function RootLayout({

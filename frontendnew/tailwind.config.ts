@@ -8,6 +8,13 @@ module.exports = {
 	],
 	theme: {
 	  extend: {
+		container: {
+		  center: true,
+		  padding: "1rem",
+		  screens: {
+			DEFAULT: "1230px",
+		  },
+		},
 		colors: {
 		  brand: {
 			blue: {

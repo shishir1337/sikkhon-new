@@ -32,7 +32,7 @@ export default function CourseCard({
   rating,
 }: CourseCardProps) {
   return (
-    <div className="rounded-xl overflow-hidden shadow-lg bg-white transition-all duration-300 ease-in-out hover:scale-[1.02]">
+    <div className="rounded-xl overflow-hidden shadow-lg bg-white transition-all duration-300 ease-in-out hover:scale-[1.01]">
       <div className="relative">
         <Image
           src={thumbnail || "/placeholder.svg"}

@@ -1,74 +1,51 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Facebook, Youtube } from "lucide-react";
-import { Nunito } from "next/font/google";
+import Link from "next/link"
+import Image from "next/image"
+import { Facebook, Youtube } from "lucide-react"
+import { Nunito } from "next/font/google"
 
-const nunito = Nunito({ subsets: ["latin"] });
+const nunito = Nunito({ subsets: ["latin"] })
 
 export default function Footer() {
   return (
     <footer className="bg-blue-950 text-white">
-      <div className="max-w-[1230px] mx-auto px-4 py-12">
+      <div className="container px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Information Column */}
           <div className="text-center md:text-left">
-            <h3 className={`text-xl font-extrabold mb-4 ${nunito.className}`}>
-              Information
-            </h3>
+            <h3 className={`text-xl font-extrabold mb-4 ${nunito.className}`}>Information</h3>
             <ul className="space-y-2">
               <li>
-                <Link
-                  href="/about"
-                  className="hover:text-gray-300 transition-colors"
-                >
+                <Link href="/about" className="hover:text-gray-300 transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/contact"
-                  className="hover:text-gray-300 transition-colors"
-                >
+                <Link href="/contact" className="hover:text-gray-300 transition-colors">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/privacy-policy"
-                  className="hover:text-gray-300 transition-colors"
-                >
+                <Link href="/privacy-policy" className="hover:text-gray-300 transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/terms"
-                  className="hover:text-gray-300 transition-colors"
-                >
+                <Link href="/terms" className="hover:text-gray-300 transition-colors">
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/refund-policy"
-                  className="hover:text-gray-300 transition-colors"
-                >
+                <Link href="/refund-policy" className="hover:text-gray-300 transition-colors">
                   Refund Policy
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/cookies-policy"
-                  className="hover:text-gray-300 transition-colors"
-                >
+                <Link href="/cookies-policy" className="hover:text-gray-300 transition-colors">
                   Cookies Policy
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/sitemap"
-                  className="hover:text-gray-300 transition-colors"
-                >
+                <Link href="/sitemap" className="hover:text-gray-300 transition-colors">
                   Sitemap
                 </Link>
               </li>
@@ -108,10 +85,7 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <p className="text-sm text-center">
               Copyright © 2019 – 2025{" "}
-              <Link
-                href="https://rizecap.com"
-                className="text-white hover:text-gray-300 transition-colors"
-              >
+              <Link href="https://rizecap.com" className="text-white hover:text-gray-300 transition-colors">
                 Rize Capital Ltd
               </Link>
             </p>
@@ -139,5 +113,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }
+
