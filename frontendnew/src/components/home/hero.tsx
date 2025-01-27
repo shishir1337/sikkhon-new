@@ -8,7 +8,7 @@ const nunito = Nunito({ subsets: ["latin"] })
 export default function HeroSection() {
   const courseData = [
     {
-      thumbnail: "https://media.dizishore.com/sikkhon.com/2024/07/excel-1-750x500.jpg.webp",
+      thumbnail: "/Excel_Course_Banner.webp",
       regularPrice: 99.99,
       discountedPrice: 79.99,
       instructor: {
@@ -39,8 +39,8 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative w-full py-12 md:py-24 bg-cover bg-center"
-      style={{ backgroundImage: "url(https://media.dizishore.com/sikkhon.com/2024/01/sikkhon-home-background.jpg.webp)" }}
+      className="relative min-h-screen w-full py-12 md:py-24 bg-cover bg-center"
+      style={{ backgroundImage: "url(/Sikkhon_Home_Background.webp)" }}
     >
       <div className="absolut"></div>
       <div className="relative z-10 max-w-[1230px] mx-auto px-4">
