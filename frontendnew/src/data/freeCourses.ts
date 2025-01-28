@@ -17,6 +17,7 @@ export const freeCourses: Course[] = [
     enrolledStudents: 2110,
     rating: 4.7,
     category: "Office Skills",
+    releaseDate: "2024-10-20",
   },
   {
     id: "web-development-basics-free",
@@ -33,7 +34,8 @@ export const freeCourses: Course[] = [
     totalLessons: 39,
     enrolledStudents: 2110,
     rating: 4.7,
-    category: "Office Skills",
+    category: "Office Skills",  
+    releaseDate: "2024-10-20",
   },
   {
     id: "digital-marketing-intro-free",
@@ -51,6 +53,7 @@ export const freeCourses: Course[] = [
     enrolledStudents: 2200,
     rating: 4.6,
     category: "Marketing",
+    releaseDate: "2024-10-20",
   },
 ]
 
