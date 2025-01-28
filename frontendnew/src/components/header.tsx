@@ -19,6 +19,8 @@ import {
 import { cn } from "@/lib/utils"
 import { MiniCart } from "../components/mini-cart"
 import { Nunito } from "next/font/google"
+
+
 const nunito = Nunito({ subsets: ["latin"] })
 
 const Header = () => {
@@ -87,7 +89,7 @@ const Header = () => {
                     Blog
                   </Link>
                   <Button
-                    className="rounded-sm bg-blue-950 hover:bg-blue-950 transition-colors duration-300 mt-4"
+                    className="rounded-sm bg-brand-blue hover:bg-brand-blue-600 transition-colors duration-300 mt-4"
                     asChild
                   >
                     <Link href="/login">
@@ -145,23 +147,15 @@ const Header = () => {
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className={cn(nunito.className, "text-[16.5px] font-bold")}>
-                    Courses
-                  </NavigationMenuTrigger>
+                  <Link href="/courses/" passHref legacyBehavior>
+                    <NavigationMenuTrigger className={cn(nunito.className, "text-[16.5px] font-bold")}>
+                      Courses
+                    </NavigationMenuTrigger>
+                  </Link>
                   <NavigationMenuContent className="w-[200px]">
                     <ul className="grid w-[200px] gap-3 p-4">
-                      {[
-                        {
-                          title: "Free Courses",
-                          href: "/courses/free",
-                        },
-                        {
-                          title: "Paid Courses",
-                          href: "/courses/paid",
-                        },
-                      ].map((item) => (
-                        <ListItem key={item.title} title={item.title} href={item.href}></ListItem>
-                      ))}
+                      <ListItem title="Free Courses" href="/courses/free" />
+                      <ListItem title="Paid Courses" href="/courses/paid" />
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
@@ -189,7 +183,7 @@ const Header = () => {
 
             {/* Login/Register Button (Desktop only) */}
             <Button
-              className="rounded-sm px-6 py-6 text-md bg-blue-950 hover:bg-blue-950 transition-colors duration-300 hidden md:inline-flex"
+              className="rounded-sm px-6 py-6 text-md bg-brand-blue hover:bg-brand-blue-600 transition-colors duration-300 hidden md:inline-flex"
               asChild
             >
               <Link href="/login">

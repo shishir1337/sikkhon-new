@@ -15,6 +15,7 @@ export interface Instructor {
     enrolledStudents: number
     rating: number
     category: string
+    releaseDate: string;
   }
   
   export const courses: Course[] = [
@@ -34,6 +35,7 @@ export interface Instructor {
       enrolledStudents: 211,
       rating: 4.7,
       category: "Office Skills",
+      releaseDate: "2024-05-12",
     },
     {
       id: "freshdesk-omnichannel",
@@ -50,7 +52,8 @@ export interface Instructor {
       totalLessons: 9,
       enrolledStudents: 17,
       rating: 4.9,
-      category: "Customer Support",
+      category: "Fresh Desk",
+      releaseDate: "2024-05-12",
     },
     {
       id: "web-development-fundamentals",
@@ -68,6 +71,7 @@ export interface Instructor {
       enrolledStudents: 1500,
       rating: 4.8,
       category: "Web Development",
+      releaseDate: "2024-05-12",
     },
     {
       id: "data-science-python",
@@ -85,6 +89,7 @@ export interface Instructor {
       enrolledStudents: 2200,
       rating: 4.9,
       category: "Data Science",
+      releaseDate: "2024-05-12",
     },
     {
       id: "digital-marketing-essentials",
@@ -101,7 +106,8 @@ export interface Instructor {
       totalLessons: 9,
       enrolledStudents: 1800,
       rating: 4.7,
-      category: "Marketing",
+      category: "Content Writing",
+      releaseDate: "2024-05-12",
     },
     {
       id: "mobile-app-development",
@@ -119,6 +125,7 @@ export interface Instructor {
       enrolledStudents: 1300,
       rating: 4.8,
       category: "Mobile Development",
+      releaseDate: "2024-05-12",
     },
     {
       id: "graphic-design-fundamentals",
@@ -136,6 +143,7 @@ export interface Instructor {
       enrolledStudents: 1600,
       rating: 4.6,
       category: "Design",
+      releaseDate: "2024-05-12",
     },
     {
       id: "project-management-professional",
@@ -153,6 +161,7 @@ export interface Instructor {
       enrolledStudents: 2500,
       rating: 4.9,
       category: "Business",
+      releaseDate: "2024-05-12",
     },
     {
       id: "machine-learning-ai",
@@ -170,6 +179,7 @@ export interface Instructor {
       enrolledStudents: 1900,
       rating: 4.8,
       category: "Artificial Intelligence",
+      releaseDate: "2024-05-12",
     },
   ]
   
