@@ -11,16 +11,16 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 
-
 const nunito = Nunito({ subsets: ["latin"] })
 
-export default function StudentRegistrationForm() {
+export default function InstructorRegistrationForm() {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [expertise, setExpertise] = useState("")
   const [agreeTerms, setAgreeTerms] = useState(false)
   const [passwordError, setPasswordError] = useState("")
   const router = useRouter()
@@ -44,12 +44,13 @@ export default function StudentRegistrationForm() {
     }
 
     // Here you would typically handle the registration logic
-    console.log("Registration attempt", { firstName, lastName, username, email, password })
+    console.log("Instructor Registration attempt", { firstName, lastName, username, email, expertise, password })
 
-    // For now, we'll just show a success message and redirect to the home page
+    // For now, we'll just show a success message and redirect to the login page
     toast({
       title: "Registration Successful",
-      description: "Welcome to Sikkhon! You can now log in to your account.",
+      description:
+        "Welcome to Sikkhon! Your instructor account is pending approval. You can now log in to your account.",
     })
     router.push("/login")
   }
@@ -57,8 +58,10 @@ export default function StudentRegistrationForm() {
   return (
     <Card className="w-full">
       <CardHeader className="space-y-1">
-        <CardTitle className={`${nunito.className} text-2xl font-bold text-center`}>Create an Account</CardTitle>
-        <CardDescription className="text-center">Enter your details to register as a student</CardDescription>
+        <CardTitle className={`${nunito.className} text-2xl font-bold text-center`}>
+          Create an Instructor Account
+        </CardTitle>
+        <CardDescription className="text-center">Enter your details to register as an instructor</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -109,6 +112,17 @@ export default function StudentRegistrationForm() {
             />
           </div>
           <div className="space-y-2">
+            <Label htmlFor="expertise">Area of Expertise</Label>
+            <Input
+              id="expertise"
+              type="text"
+              placeholder="e.g., Web Development, Data Science"
+              value={expertise}
+              onChange={(e) => setExpertise(e.target.value)}
+              required
+            />
+          </div>
+          <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
             <Input
               id="password"
@@ -150,7 +164,7 @@ export default function StudentRegistrationForm() {
             </label>
           </div>
           <Button type="submit" className="w-full bg-blue-950 hover:bg-blue-900">
-            Register
+            Register as Instructor
           </Button>
         </form>
       </CardContent>
