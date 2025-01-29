@@ -58,7 +58,7 @@ const Header = () => {
               <div className="py-6">
                 <div className="relative mb-4">
                   <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground pointer-events-none" />
-                  <Input type="search" placeholder="Search courses..." className="w-full pl-9 rounded-full" />
+                  <Input type="search" placeholder="Search for anything..." className="w-full pl-9 rounded-full" />
                 </div>
                 <nav className="flex flex-col space-y-4">
                   <Link
