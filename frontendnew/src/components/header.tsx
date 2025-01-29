@@ -135,7 +135,7 @@ const Header = () => {
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground pointer-events-none" />
               <Input
                 type="search"
-                placeholder="Search courses..."
+                placeholder="Search for anything..."
                 className="w-full pl-9 rounded-full bg-muted/30 focus:bg-background transition-colors duration-300"
               />
             </div>
