@@ -20,7 +20,6 @@ export default function InstructorRegistrationForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const [expertise, setExpertise] = useState("")
   const [agreeTerms, setAgreeTerms] = useState(false)
   const [passwordError, setPasswordError] = useState("")
   const router = useRouter()
@@ -44,7 +43,7 @@ export default function InstructorRegistrationForm() {
     }
 
     // Here you would typically handle the registration logic
-    console.log("Instructor Registration attempt", { firstName, lastName, username, email, expertise, password })
+    console.log("Instructor Registration attempt", { firstName, lastName, username, email, password })
 
     // For now, we'll just show a success message and redirect to the login page
     toast({
@@ -108,17 +107,6 @@ export default function InstructorRegistrationForm() {
               placeholder="john.doe@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="expertise">Area of Expertise</Label>
-            <Input
-              id="expertise"
-              type="text"
-              placeholder="e.g., Web Development, Data Science"
-              value={expertise}
-              onChange={(e) => setExpertise(e.target.value)}
               required
             />
           </div>
