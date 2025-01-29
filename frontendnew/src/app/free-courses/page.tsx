@@ -50,7 +50,7 @@ export default function FreeCoursesPage() {
         {/* Bottom Message */}
         <div className="mt-16 text-center">
           <p className={`${nunito.className} text-lg text-gray-700`}>
-            Get the most dedicated consultation for your life-changing course. Earn a certification for your effort and
+            Get the most dedicated consultation for your life-changing course. Earn a <br/> certification for your effort and
             passion.{" "}
             <Link href="/dashboard" className="text-blue-950 font-semibold hover:underline">
               Join Free Now
