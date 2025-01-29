@@ -77,14 +77,14 @@ const Header = () => {
                       </h4>
                     </Link>
                     <Link
-                      href="/courses/free"
+                      href="/free-courses"
                       className={`block text-sm text-muted-foreground hover:text-brand-blue transition-colors cursor-pointer ${nunito.className}`}
                       onClick={() => setIsSheetOpen(false)}
                     >
                       Free Courses
                     </Link>
                     <Link
-                      href="/courses/paid"
+                      href="/paid-courses"
                       className={`block text-sm text-muted-foreground hover:text-brand-blue transition-colors cursor-pointer ${nunito.className}`}
                       onClick={() => setIsSheetOpen(false)}
                     >
@@ -165,8 +165,8 @@ const Header = () => {
                   </Link>
                   <NavigationMenuContent className="w-[200px]">
                     <ul className="grid w-[200px] gap-3 p-4">
-                      <ListItem title="Free Courses" href="/courses/free" />
-                      <ListItem title="Paid Courses" href="/courses/paid" />
+                      <ListItem title="Free Courses" href="/free-courses" />
+                      <ListItem title="Paid Courses" href="/paid-courses" />
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
