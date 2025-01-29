@@ -20,11 +20,11 @@ import { cn } from "@/lib/utils"
 import { MiniCart } from "../components/mini-cart"
 import { Nunito } from "next/font/google"
 
-
 const nunito = Nunito({ subsets: ["latin"] })
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = React.useState(false)
+  const [isSheetOpen, setIsSheetOpen] = React.useState(false)
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -44,7 +44,7 @@ const Header = () => {
       <div className="container px-2 sm:px-4 lg:px-6">
         <div className="flex h-16 md:h-20 items-center justify-between">
           {/* Mobile: Hamburger Menu */}
-          <Sheet>
+          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
                 <Menu className="h-5 w-5" />
@@ -64,20 +64,29 @@ const Header = () => {
                   <Link
                     href="/"
                     className={`text-sm font-bold hover:text-brand-blue transition-colors cursor-pointer ${nunito.className}`}
+                    onClick={() => setIsSheetOpen(false)}
                   >
                     Home
                   </Link>
                   <div className="space-y-3">
-                    <h4 className={`text-sm font-bold ${nunito.className}`}>Courses</h4>
+                    <Link href="/courses" onClick={() => setIsSheetOpen(false)}>
+                      <h4
+                        className={`text-sm font-bold ${nunito.className} hover:text-brand-blue transition-colors cursor-pointer`}
+                      >
+                        Courses
+                      </h4>
+                    </Link>
                     <Link
                       href="/courses/free"
                       className={`block text-sm text-muted-foreground hover:text-brand-blue transition-colors cursor-pointer ${nunito.className}`}
+                      onClick={() => setIsSheetOpen(false)}
                     >
                       Free Courses
                     </Link>
                     <Link
                       href="/courses/paid"
                       className={`block text-sm text-muted-foreground hover:text-brand-blue transition-colors cursor-pointer ${nunito.className}`}
+                      onClick={() => setIsSheetOpen(false)}
                     >
                       Paid Courses
                     </Link>
@@ -85,12 +94,14 @@ const Header = () => {
                   <Link
                     href="/blog"
                     className={`text-sm font-bold hover:text-brand-blue transition-colors cursor-pointer ${nunito.className}`}
+                    onClick={() => setIsSheetOpen(false)}
                   >
                     Blog
                   </Link>
                   <Button
                     className="rounded-sm bg-brand-blue hover:bg-brand-blue-600 transition-colors duration-300 mt-4"
                     asChild
+                    onClick={() => setIsSheetOpen(false)}
                   >
                     <Link href="/login">
                       <User className="w-5 h-5" />
