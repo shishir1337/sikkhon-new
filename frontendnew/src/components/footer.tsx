@@ -15,7 +15,7 @@ export default function Footer() {
             <h3 className={`text-xl font-extrabold mb-4 ${nunito.className}`}>Information</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="hover:text-gray-300 transition-colors">
+                <Link href="/about-us" className="hover:text-gray-300 transition-colors">
                   About Us
                 </Link>
               </li>
@@ -30,17 +30,17 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-gray-300 transition-colors">
+                <Link href="/terms-conditions" className="hover:text-gray-300 transition-colors">
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link href="/refund-policy" className="hover:text-gray-300 transition-colors">
+                <Link href="/refund-returns" className="hover:text-gray-300 transition-colors">
                   Refund Policy
                 </Link>
               </li>
               <li>
-                <Link href="/cookies-policy" className="hover:text-gray-300 transition-colors">
+                <Link href="/cookies" className="hover:text-gray-300 transition-colors">
                   Cookies Policy
                 </Link>
               </li>

@@ -154,7 +154,7 @@ export default function AllCoursesPage() {
             <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
               <DrawerTrigger asChild>
                 <Button variant="outline" className="md:hidden">
-                  <FilterIcon className="mr-2 h-4 w-4" /> Filter
+                  <FilterIcon className="mr-2 h-4 w-4" /> Categories
                 </Button>
               </DrawerTrigger>
               <DrawerContent>

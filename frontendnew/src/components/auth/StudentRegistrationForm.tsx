@@ -8,9 +8,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
-
 
 const nunito = Nunito({ subsets: ["latin"] })
 
@@ -36,8 +35,8 @@ export default function StudentRegistrationForm() {
 
     if (!agreeTerms) {
       toast({
-        title: "Terms and Conditions",
-        description: "Please agree to the Terms and Conditions to register.",
+        title: "Agreement Required",
+        description: "Please agree to our policies to register.",
         variant: "destructive",
       })
       return
@@ -137,7 +136,7 @@ export default function StudentRegistrationForm() {
             />
             {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-start space-x-2">
             <Checkbox id="terms" checked={agreeTerms} onCheckedChange={(checked) => setAgreeTerms(checked === true)} />
             <label
               htmlFor="terms"
@@ -147,6 +146,19 @@ export default function StudentRegistrationForm() {
               <Link href="/terms-conditions" className="text-sm/5 text-blue-950 hover:underline">
                 Terms and Conditions
               </Link>
+              ,{" "}
+              <Link href="/privacy-policy" className="text-sm/5 text-blue-950 hover:underline">
+                Privacy Policy
+              </Link>
+              ,{" "}
+              <Link href="/refund-returns" className="text-sm/5 text-blue-950 hover:underline">
+                Refund Policy
+              </Link>
+              , and{" "}
+              <Link href="/cookies" className="text-sm/5 text-blue-950 hover:underline">
+                Cookies Policy
+              </Link>
+              .
             </label>
           </div>
           <Button type="submit" className="w-full bg-blue-950 hover:bg-blue-900">
