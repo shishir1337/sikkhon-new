@@ -1,0 +1,42 @@
+import { SettingsService } from '../settings.service';
+import { updateSMTPSettingsDto } from './dto/update-smtp-settings.dt';
+import { ResponseModel } from 'src/shared/models/response.model';
+import { UpdateTermsPrivacyDto } from './dto/update-terms-privacy.dt';
+import { UpdateGeneralSettingsDto } from './dto/update-general-settings.dto';
+import { UpdateGoogleAuthSettingsDto } from './dto/update-google-auth-settings.dto';
+import { UpdateGithubAuthSettingsDto } from './dto/update-github-auth-settings.dto';
+import { UpdateLandingPageDataDto } from './dto/update-landing-page-data.dto';
+import { UpdateLandingAboutSectionDataDto } from './dto/update-landing-about-section-data.dto';
+import { UpdateLandingChooseUsSectionDataDto } from './dto/update-landing-choose-us-section-data.dto';
+import { UpdateLandingHowItWorkSectionDataDto } from './dto/update-landing-how-it-work-data.dto';
+import { UpdateBusinessSettingsDto } from './dto/update-business-settings.dto';
+import { UpdateAgoraCredentialsDto } from './dto/update-agora-credentials.dto';
+export declare class AdminSettingsController {
+    private readonly settingsService;
+    constructor(settingsService: SettingsService);
+    updateSMTPSettings(payload: updateSMTPSettingsDto): Promise<ResponseModel>;
+    getSmtpSettingsData(): Promise<ResponseModel>;
+    sendTestMail(payload: {
+        email: string;
+    }): Promise<ResponseModel>;
+    updateTermsPrivacy(payload: UpdateTermsPrivacyDto): Promise<ResponseModel>;
+    getTermsPrivacyData(): Promise<ResponseModel>;
+    updateGeneralSettings(payload: UpdateGeneralSettingsDto): Promise<ResponseModel>;
+    getGeneralSettingsData(): Promise<ResponseModel>;
+    updateGoogleAuthSettings(payload: UpdateGoogleAuthSettingsDto): Promise<ResponseModel>;
+    getGoogleAuthSettingsData(): Promise<ResponseModel>;
+    updateGithubAuthSettings(payload: UpdateGithubAuthSettingsDto): Promise<ResponseModel>;
+    getGithubAuthSettingsData(): Promise<ResponseModel>;
+    updateLandingMainBannerData(payload: UpdateLandingPageDataDto): Promise<ResponseModel>;
+    getLandingMainBannerData(): Promise<ResponseModel>;
+    updateLandingAboutSectionData(payload: UpdateLandingAboutSectionDataDto): Promise<ResponseModel>;
+    getLandingAboutSectionData(): Promise<ResponseModel>;
+    updateLandingChooseUsSectionData(payload: UpdateLandingChooseUsSectionDataDto): Promise<ResponseModel>;
+    getLandingChooseUsSectionData(): Promise<ResponseModel>;
+    updateLandingHowItWorkSectionData(payload: UpdateLandingHowItWorkSectionDataDto): Promise<ResponseModel>;
+    getLandingHowItWorkSectionData(): Promise<ResponseModel>;
+    updateBusinessSettings(payload: UpdateBusinessSettingsDto): Promise<ResponseModel>;
+    getBusinessSettingsData(): Promise<ResponseModel>;
+    updateAgoraCredentials(payload: UpdateAgoraCredentialsDto): Promise<ResponseModel>;
+    getAgoraSettingsData(): Promise<ResponseModel>;
+}

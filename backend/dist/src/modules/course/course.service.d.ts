@@ -1,0 +1,32 @@
+import { User } from '@prisma/client';
+import { paginateInterface } from 'src/shared/constants/types';
+import { ResponseModel } from 'src/shared/models/response.model';
+import { CreateEditCourseDto } from './user/dto/create-edit-course.dto';
+import { ChangeCourseStatusDto } from './admin/dto/change-course-status.dto';
+import { CreateCourseByAdminDto } from './admin/dto/create-edit-course.dto';
+import { NotificationService } from '../notification-management/notification.service';
+export declare class CourseService {
+    private readonly notificationService;
+    constructor(notificationService: NotificationService);
+    private checkCourseExistAndBelongsToUser;
+    getInstructorCourses(payload: paginateInterface, user: User): Promise<ResponseModel>;
+    getInstructorStudents(payload: paginateInterface, user: User): Promise<ResponseModel>;
+    getCourseDetails(course_id: number, user: User): Promise<ResponseModel>;
+    getCourseDetailsSections(course_id: number): Promise<ResponseModel>;
+    createEditCourse(createEditCourseDto: CreateEditCourseDto, user: User): Promise<ResponseModel>;
+    deleteCourse(id: number, user: User): Promise<ResponseModel>;
+    getCourseListForAdmin(payload: any): Promise<ResponseModel>;
+    getCourseDetailsForAdmin(id: number): Promise<ResponseModel>;
+    changeCourseStatusByAdmin(payload: ChangeCourseStatusDto): Promise<ResponseModel>;
+    createCourseByAdmin(payload: CreateCourseByAdminDto): Promise<ResponseModel>;
+    deleteCourseByAdmin(id: number): Promise<ResponseModel>;
+    getCourseListPublic(payload: any): Promise<ResponseModel>;
+    getCourseFilterDataPublic(): Promise<ResponseModel>;
+    getCourseDetailsPublic(course_slug: string): Promise<ResponseModel>;
+    getEnrolledCourses(user: User, payload: paginateInterface): Promise<ResponseModel>;
+    checkCourseEnrollment(course_id: number, user: User): Promise<ResponseModel>;
+    getEnrolledCourseDetails(user: User, course_id: number): Promise<ResponseModel>;
+    getCourseReviewDataPublic(course_id: number): Promise<ResponseModel>;
+    getAllCourseReport(payload: any): Promise<ResponseModel>;
+    getCourseListBySearch(payload: any): Promise<ResponseModel>;
+}

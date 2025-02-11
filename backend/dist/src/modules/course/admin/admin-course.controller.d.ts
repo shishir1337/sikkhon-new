@@ -1,0 +1,30 @@
+import { CourseService } from '../course.service';
+import { ChangeCourseStatusDto } from './dto/change-course-status.dto';
+import { CreateCourseByAdminDto } from './dto/create-edit-course.dto';
+import { SectionService } from '../section.service';
+import { LessonService } from '../lesson.service';
+import { CreateSectionDto } from '../user/dto/create-section.dto';
+import { EditSectionDto } from '../user/dto/edit-section.dto';
+import { CreateLessonDto } from '../user/dto/create-lesson.';
+import { EditLessonDto } from '../user/dto/edit-lesson';
+export declare class AdminCourseController {
+    private readonly courseService;
+    private readonly sectionService;
+    private readonly lessonService;
+    constructor(courseService: CourseService, sectionService: SectionService, lessonService: LessonService);
+    getCourseListForAdmin(payload: any): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    getCourseDetailsForAdmin(id: number): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    getCourseDetailsSections(course_id: number): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    changeCourseStatusByAdmin(payload: ChangeCourseStatusDto): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    createCourseByAdmin(payload: CreateCourseByAdminDto): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    deleteCourseByAdmin(id: number): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    createCourseSection(payload: CreateSectionDto): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    editCourseSection(payload: EditSectionDto): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    deleteInstructorCoursesSection(section_id: number): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    getSectionById(section_id: number): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    createLesson(payload: CreateLessonDto): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    editLesson(payload: EditLessonDto): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    deleteLesson(lesson_id: number): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    getLessonBySectionId(section_id: number): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    getAllCourseReport(payload: any): Promise<import("../../../shared/models/response.model").ResponseModel>;
+}

@@ -1,0 +1,35 @@
+import { CourseService } from '../course.service';
+import { paginateInterface } from 'src/shared/constants/types';
+import { User } from '@prisma/client';
+import { CreateEditCourseDto } from './dto/create-edit-course.dto';
+import { CreateSectionDto } from './dto/create-section.dto';
+import { SectionService } from '../section.service';
+import { EditSectionDto } from './dto/edit-section.dto';
+import { LessonService } from '../lesson.service';
+import { CreateLessonDto } from './dto/create-lesson.';
+import { EditLessonDto } from './dto/edit-lesson';
+import { CheckLessionDto } from './dto/check-lession.dto';
+export declare class CourseController {
+    private readonly courseService;
+    private readonly sectionService;
+    private readonly lessonService;
+    constructor(courseService: CourseService, sectionService: SectionService, lessonService: LessonService);
+    checkCourseEnrollment(course_id: number, user: User): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    getInstructorCourses(payload: paginateInterface, user: User): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    getInstructorStudents(payload: paginateInterface, user: User): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    getCourseDetails(course_id: number, user: User): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    getCourseDetailsSections(course_id: number, user: User): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    createInstructorCourses(payload: CreateEditCourseDto, user: User): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    deleteInstructorCourses(id: number, user: User): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    getEnrolledCourses(payload: paginateInterface, user: User): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    createCourseSection(payload: CreateSectionDto): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    editCourseSection(payload: EditSectionDto): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    deleteInstructorCoursesSection(section_id: number, user: User): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    getSectionById(section_id: number): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    createLesson(payload: CreateLessonDto): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    editLesson(payload: EditLessonDto): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    deleteLesson(lesson_id: number): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    getLessonBySectionId(section_id: number): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    checkLession(user: User, payload: CheckLessionDto): Promise<import("../../../shared/models/response.model").ResponseModel>;
+    getEnrolledCourseDetails(user: User, course_id: number): Promise<import("../../../shared/models/response.model").ResponseModel>;
+}

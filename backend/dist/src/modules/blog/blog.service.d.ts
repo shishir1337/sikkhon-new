@@ -1,0 +1,31 @@
+import { StoreBlogCategoryDto } from './admin/dto/store-blog-category.dto';
+import { StoreBlogDto } from './admin/dto/store-blog.dto';
+import { User } from '../users/entities/user.entity';
+import { StoreBlogTagDto } from './admin/dto/store-blog-tag.dto';
+export declare class BlogService {
+    addBlogCategory(payload: StoreBlogCategoryDto): Promise<import("../../shared/models/response.model").ResponseModel>;
+    getBlogCategoryByPaginateSearch(payload: any): Promise<import("../../shared/models/response.model").ResponseModel>;
+    updateBlogCategory(blog_category_id: number, payload: StoreBlogCategoryDto): Promise<import("../../shared/models/response.model").ResponseModel>;
+    getBlogCategoryDetails(blog_category_id: number): Promise<import("../../shared/models/response.model").ResponseModel>;
+    deleteBlogCategory(blog_category_id: number): Promise<import("../../shared/models/response.model").ResponseModel>;
+    createNewBlog(user: User, payload: StoreBlogDto): Promise<import("../../shared/models/response.model").ResponseModel>;
+    getBlogPendingComments(payload: any): Promise<import("../../shared/models/response.model").ResponseModel>;
+    approveBlogComment(payload: any): Promise<import("../../shared/models/response.model").ResponseModel>;
+    deleteBlogComment(blog_comment_id: number): Promise<import("../../shared/models/response.model").ResponseModel>;
+    getBlogListByPaginateAndSearch(payload: any): Promise<import("../../shared/models/response.model").ResponseModel>;
+    updateBlogPost(user: User, blog_id: number, payload: StoreBlogDto): Promise<import("../../shared/models/response.model").ResponseModel>;
+    getBlogPostDetails(blog_id: number): Promise<import("../../shared/models/response.model").ResponseModel>;
+    deleteBlogPost(blog_id: number): Promise<import("../../shared/models/response.model").ResponseModel>;
+    addBlogTag(payload: StoreBlogTagDto): Promise<import("../../shared/models/response.model").ResponseModel>;
+    getBlogTagListByPaginateSearch(payload: any): Promise<import("../../shared/models/response.model").ResponseModel>;
+    updateBlogTag(blog_tag_id: number, payload: StoreBlogTagDto): Promise<import("../../shared/models/response.model").ResponseModel>;
+    getBlogTagDetails(blog_tag_id: number): Promise<import("../../shared/models/response.model").ResponseModel>;
+    deleteBlogTagDetails(blog_tag_id: number): Promise<import("../../shared/models/response.model").ResponseModel>;
+    getAllActiveBlogCategory(): Promise<import("../../shared/models/response.model").ResponseModel>;
+    getAllActiveBlogTag(): Promise<import("../../shared/models/response.model").ResponseModel>;
+    addBlogComment(user: User, payload: any): Promise<import("../../shared/models/response.model").ResponseModel>;
+    getBlogListByPaginateAndSearchPublic(payload: any): Promise<import("../../shared/models/response.model").ResponseModel>;
+    getCategoryListPublic(): Promise<import("../../shared/models/response.model").ResponseModel>;
+    getBlogDetailsBySlugPublic(blog_slug: string): Promise<import("../../shared/models/response.model").ResponseModel>;
+    getBlogComments(blogId: string): Promise<import("../../shared/models/response.model").ResponseModel>;
+}
