@@ -3,8 +3,7 @@ import { refreshJwtConfig } from '../configs/jwt.config';
 
 /** Returns the token expiration date */
 export function getTokenExpirationDate(): Date {
-  const expiresInDays =
-    ms(refreshJwtConfig.expiresIn as string) / 1000 / 60 / 60 / 24;
+  const expiresInDays = 7;
 
   const expiresAt = addDaysFromNow(expiresInDays);
 

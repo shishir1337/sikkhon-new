@@ -36,7 +36,7 @@
     "@nestjs/passport": "^9.0.0",
     "@nestjs/platform-express": "^9.1.4",
     "@nestjs/swagger": "^6.1.2",
-    "@prisma/client": "^4.7.1",
+    "@prisma/client": "^6.3.0",
     "@types/nodemailer-express-handlebars": "^4.0.5",
     "agora-access-token": "^2.0.4",
     "axios": "^1.5.1",

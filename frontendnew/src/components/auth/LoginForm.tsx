@@ -8,7 +8,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
+import { useToast } from "@/hooks/use-toast"
+import { api } from "@/lib/axios"
+import { useAuthStore } from "@/stores/auth-store"
 
 const nunito = Nunito({ subsets: ["latin"] })
 
@@ -16,14 +19,40 @@ export default function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [keepSignedIn, setKeepSignedIn] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
+  const { toast } = useToast()
+  const login = useAuthStore((state) => state.login)
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Here you would typically handle the login logic
-    console.log("Login attempt", { email, password, keepSignedIn })
-    // For now, we'll just redirect to the home page
-    router.push("/")
+    setIsLoading(true)
+
+    try {
+      const response = await api.post("/auth/login", {
+        email,
+        password,
+      })
+
+      if (response.data.success) {
+        login(response.data.data)
+        toast({
+          title: "Success",
+          description: "You have been logged in successfully.",
+        })
+        router.push("/dashboard")
+      } else {
+        throw new Error(response.data.message || "Login failed")
+      }
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.response?.data?.message || "Invalid credentials",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -35,14 +64,15 @@ export default function LoginForm() {
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="email">Username or Email Address</Label>
+            <Label htmlFor="email">Email Address</Label>
             <Input
               id="email"
-              type="text"
-              placeholder="Enter your username or email"
+              type="email"
+              placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={isLoading}
             />
           </div>
           <div className="space-y-2">
@@ -54,11 +84,17 @@ export default function LoginForm() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              disabled={isLoading}
             />
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <Checkbox id="keep-signed-in" checked={keepSignedIn} onCheckedChange={(checked) => setKeepSignedIn(checked === true)} />
+              <Checkbox
+                id="keep-signed-in"
+                checked={keepSignedIn}
+                onCheckedChange={(checked) => setKeepSignedIn(checked === true)}
+                disabled={isLoading}
+              />
               <label
                 htmlFor="keep-signed-in"
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -67,11 +103,11 @@ export default function LoginForm() {
               </label>
             </div>
             <Link href="/forgot-password" className="text-sm text-blue-950 hover:underline">
-              Forgot Password?
+              Forgot?
             </Link>
           </div>
-          <Button type="submit" className="w-full bg-blue-950 hover:bg-blue-900">
-            Sign In
+          <Button type="submit" className="w-full bg-blue-950 hover:bg-blue-900" disabled={isLoading}>
+            {isLoading ? "Signing in..." : "Sign In"}
           </Button>
         </form>
       </CardContent>

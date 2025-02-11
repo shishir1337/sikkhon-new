@@ -17,14 +17,18 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { cn } from "@/lib/utils"
-import { MiniCart } from "../components/mini-cart"
+import { MiniCart } from "./mini-cart"
 import { Nunito } from "next/font/google"
+import { useAuthStore } from "@/stores/auth-store"
+import { UserNav } from "./user-nav"
 
 const nunito = Nunito({ subsets: ["latin"] })
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [isSheetOpen, setIsSheetOpen] = React.useState(false)
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+  const user = useAuthStore((state) => state.user)
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -98,16 +102,23 @@ const Header = () => {
                   >
                     Blog
                   </Link>
-                  <Button
-                    className="rounded-sm bg-brand-blue hover:bg-brand-blue-600 transition-colors duration-300 mt-4"
-                    asChild
-                    onClick={() => setIsSheetOpen(false)}
-                  >
-                    <Link href="/login">
-                      <User className="w-5 h-5" />
-                      <span>Login / Register</span>
-                    </Link>
-                  </Button>
+                  {!isAuthenticated ? (
+                    <Button
+                      className="rounded-sm bg-brand-blue hover:bg-brand-blue-600 transition-colors duration-300 mt-4"
+                      asChild
+                      onClick={() => setIsSheetOpen(false)}
+                    >
+                      <Link href="/login">
+                        <User className="w-5 h-5" />
+                        <span>Login / Register</span>
+                      </Link>
+                    </Button>
+                  ) : (
+                    <div className="mt-4">
+                      <p className="text-sm font-medium mb-2">Signed in as:</p>
+                      <p className="text-sm text-muted-foreground">{`${user?.first_name} ${user?.last_name}`}</p>
+                    </div>
+                  )}
                 </nav>
               </div>
             </SheetContent>
@@ -192,16 +203,20 @@ const Header = () => {
           <div className="flex items-center space-x-4">
             <MiniCart />
 
-            {/* Login/Register Button (Desktop only) */}
-            <Button
-              className="rounded-sm px-6 py-6 text-md bg-brand-blue hover:bg-brand-blue-600 transition-colors duration-300 hidden md:inline-flex"
-              asChild
-            >
-              <Link href="/login">
-                <User className="w-5 h-5" />
-                <span>Login / Register</span>
-              </Link>
-            </Button>
+            {/* Login/Register Button or User Nav (Desktop only) */}
+            {!isAuthenticated ? (
+              <Button
+                className="rounded-sm px-6 py-6 text-md bg-brand-blue hover:bg-brand-blue-600 transition-colors duration-300 hidden md:inline-flex"
+                asChild
+              >
+                <Link href="/login">
+                  <User className="w-5 h-5" />
+                  <span>Login / Register</span>
+                </Link>
+              </Button>
+            ) : (
+              <UserNav />
+            )}
           </div>
         </div>
       </div>
