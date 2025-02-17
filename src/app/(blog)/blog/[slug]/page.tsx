@@ -7,7 +7,7 @@ import { getPost } from "@/lib/api"
 import { formatDate } from "@/lib/utils"
 import RichContent from "@/components/blog/RichContent"
 import BlogCard from "@/components/blog/BlogCard"
-import { Category, Post } from "../../../../types/blog"
+import { Category, Post } from "../../../../../types/blog"
 
 const nunito = Nunito({ subsets: ["latin"] })
 

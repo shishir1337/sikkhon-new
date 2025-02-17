@@ -1,13 +1,13 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Nunito } from "next/font/google";
-import { formatDate } from "@/lib/utils";
-import type { Category, Post } from "../../../types/blog";
+import Image from "next/image"
+import Link from "next/link"
+import { Nunito } from "next/font/google"
+import { formatDate } from "@/lib/utils"
+import type { Category, Post } from "../../../types/blog"
 
-const nunito = Nunito({ subsets: ["latin"] });
+const nunito = Nunito({ subsets: ["latin"] })
 
 interface BlogCardProps {
-  post: Post;
+  post: Post
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
@@ -19,12 +19,13 @@ export default function BlogCard({ post }: BlogCardProps) {
             src={post.heroImage.thumbnailURL || "/placeholder.svg"}
             alt={post.title}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover transition-transform duration-300 hover:scale-105"
           />
         </div>
       </Link>
       <div className="p-6">
-        <div className="flex flex-wrap gap-2 mb-2 uppercase">
+        <div className="flex flex-wrap gap-2 mb-2">
           {post.categories.map((category: Category) => (
             <Link
               key={category.id}
@@ -42,9 +43,7 @@ export default function BlogCard({ post }: BlogCardProps) {
             {post.title}
           </h2>
         </Link>
-        <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-          {post.meta.description}
-        </p>
+        <p className="text-gray-600 text-sm mb-4 line-clamp-3">{post.meta.description}</p>
         <div className="flex items-center justify-between mt-4">
           <div className="flex items-center">
             {post.author?.avatar && (
@@ -69,5 +68,6 @@ export default function BlogCard({ post }: BlogCardProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }
+

@@ -3,7 +3,7 @@ import { Nunito } from "next/font/google"
 import { getPosts } from "@/lib/api"
 import BlogCard from "@/components/blog/BlogCard"
 import Pagination from "@/components/blog/Pagination"
-import { Post } from "../../../types/blog"
+import { Post } from "../../../../types/blog"
 
 const nunito = Nunito({ subsets: ["latin"] })
 

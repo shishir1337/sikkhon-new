@@ -37,9 +37,10 @@ export async function getCategories() {
 }
 
 export async function getCategory(slug: string) {
-  const res = await fetch(`${API_URL}/categories/${slug}`)
+  const res = await fetch(`${API_URL}/categories?where[slug][equals]=${slug}`)
   if (!res.ok) throw new Error("Failed to fetch category")
-  return res.json()
+  const data = await res.json()
+  return data.docs[0] || null
 }
 
 export async function getAuthor(id: number) {
