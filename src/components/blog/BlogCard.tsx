@@ -30,7 +30,7 @@ export default function BlogCard({ post }: BlogCardProps) {
             <Link
               key={category.id}
               href={`/blog/category/${category.slug}`}
-              className={`${nunito.className} text-sm font-semibold text-blue-950 hover:underline`}
+              className={`${nunito.className} text-sm font-semibold text-blue-950 hover:underline uppercase`}
             >
               {category.title}
             </Link>

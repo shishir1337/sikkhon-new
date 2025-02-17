@@ -1,11 +1,15 @@
 const API_URL = "https://cms.sikkhon.com/api"
 
-export async function getPosts(page = 1, limit = 9, filters = {}) {
+export async function getPosts(page = 1, limit = 9, filters: { category?: string | number } = {}) {
   const queryParams = new URLSearchParams({
     page: page.toString(),
     limit: limit.toString(),
-    ...filters,
   })
+
+  if (filters.category) {
+    queryParams.append("where[categories][contains]", filters.category.toString())
+  }
+
   const res = await fetch(`${API_URL}/posts?${queryParams}`)
   if (!res.ok) throw new Error("Failed to fetch posts")
   return res.json()

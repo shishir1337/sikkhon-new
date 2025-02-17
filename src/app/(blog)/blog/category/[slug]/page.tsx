@@ -55,19 +55,25 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
       {/* Blog Posts Grid */}
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {postsData.docs.map((post: Post) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
-        </div>
+        {postsData.docs.length > 0 ? (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {postsData.docs.map((post: Post) => (
+                <BlogCard key={post.id} post={post} />
+              ))}
+            </div>
 
-        {/* Pagination */}
-        <Pagination
-          currentPage={postsData.page}
-          totalPages={postsData.totalPages}
-          hasNextPage={postsData.hasNextPage}
-          hasPrevPage={postsData.hasPrevPage}
-        />
+            {/* Pagination */}
+            <Pagination
+              currentPage={postsData.page}
+              totalPages={postsData.totalPages}
+              hasNextPage={postsData.hasNextPage}
+              hasPrevPage={postsData.hasPrevPage}
+            />
+          </>
+        ) : (
+          <p className="text-center text-gray-600">No posts found for this category.</p>
+        )}
       </div>
     </div>
   )
