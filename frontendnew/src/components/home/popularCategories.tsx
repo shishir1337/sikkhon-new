@@ -39,8 +39,8 @@ export default function PopularCategories() {
               <CarouselItem key={index} className="basis-1/5">
                 <div className="p-1">
                   <Image
-                    src={category.image || "/placeholder.svg"}
-                    alt={category.name}
+                    src={categories.image || "/placeholder.svg"}
+                    alt={categories.title}
                     width={128}
                     height={128}
                     className="h-auto object-contain"

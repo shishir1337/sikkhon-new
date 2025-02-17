@@ -1,14 +1,15 @@
+import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Nunito } from "next/font/google"
 import "./globals.css"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
+import Header from "../components/header"
+import Footer from "../components/footer"
 
-const inter = Inter({ subsets: ["latin"] })
+const nunito = Nunito({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "eLearning and Skill Development Platform | Distance Learning Providers",
-  description: "Elevate your learning journey with Sikkhon, a leading eLearning and skill development platform. Explore top-notch courses in Bangla from the best distance learning providers. Unlock your potential with our comprehensive eLearning platform. Start learning today!",
+  title: "Sikkhon - Online Learning Platform",
+  description: "Discover a world of knowledge with Sikkhon's online courses",
 }
 
 export default function RootLayout({
@@ -18,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={nunito.className}>
         <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-1">

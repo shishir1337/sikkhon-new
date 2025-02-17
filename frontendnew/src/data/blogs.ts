@@ -6,7 +6,7 @@ export interface Blog {
     authorAvatar: string
     authorName: string
     postDate: string
-  }
+  } 
   
   export const blogs: Blog[] = [
     {

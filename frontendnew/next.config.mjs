@@ -20,7 +20,23 @@ const nextConfig = {
                 port: '',
                 pathname: '/avatar/**',
             },
-            
+            {
+                protocol: 'https',
+                hostname: 'cms.sikkhon.com',
+                port: '',
+                pathname: '/sikkhon/**',
+            },
+            {
+                protocol: "https",
+                hostname: "cms.sikkhon.com",
+                port: "",
+                pathname: "/api/media/file/**", // Allows all images under this path
+            },
+            {
+                protocol: "https",
+                hostname: "media.dizishore.com",
+            },
+
         ]
     }
 };
