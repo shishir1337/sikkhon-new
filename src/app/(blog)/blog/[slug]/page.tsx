@@ -75,7 +75,7 @@ export default async function BlogPostPage({ params }: Props) {
                     <Link
                       key={category.id}
                       href={`/blog/category/${category.slug}`}
-                      className={`${nunito.className} text-sm font-semibold hover:underline`}
+                      className={`${nunito.className} text-sm font-semibold hover:underline uppercase`}
                     >
                       {category.title}
                     </Link>
