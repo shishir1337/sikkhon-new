@@ -5,7 +5,7 @@ import { Nunito } from "next/font/google"
 import { getAuthor, getPosts } from "@/lib/api"
 import BlogCard from "@/components/blog/BlogCard"
 import Pagination from "@/components/blog/Pagination"
-import { Post } from "../../../../types/blog"
+import type { Post } from "../../../../types/blog"
 
 const nunito = Nunito({ subsets: ["latin"] })
 
@@ -38,7 +38,7 @@ export default async function AuthorPage({ params, searchParams }: Props) {
   }
 
   const page = typeof searchParams.page === "string" ? Number.parseInt(searchParams.page) : 1
-  const postsData = await getPosts(page);
+  const postsData = await getPosts(page, 9, { author: Number.parseInt(params.id) })
 
   return (
     <div className="bg-gray-50 min-h-screen">

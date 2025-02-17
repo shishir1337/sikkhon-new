@@ -83,7 +83,8 @@ export default async function BlogPostPage({ params }: Props) {
                 </div>
                 <h1 className={`${nunito.className} text-4xl md:text-5xl font-bold mb-4`}>{post.title}</h1>
                 <div className="flex items-center justify-center gap-4">
-                  <Link href={`/author/${post.author.id}`} className="flex items-center gap-2 hover:underline">
+                  <Link href={`/author/${post.author.id}`}
+                  className="flex items-center gap-2 hover:underline">
                     {post.author.avatar && (
                       <Image
                         src={post.author.avatar.thumbnailURL || "/placeholder.svg"}

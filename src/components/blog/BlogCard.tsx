@@ -1,13 +1,13 @@
-import Image from "next/image"
-import Link from "next/link"
-import { Nunito } from "next/font/google"
-import { formatDate } from "@/lib/utils"
-import type { Post } from "../../../types/blog"
+import Image from "next/image";
+import Link from "next/link";
+import { Nunito } from "next/font/google";
+import { formatDate } from "@/lib/utils";
+import type { Category, Post } from "../../../types/blog";
 
-const nunito = Nunito({ subsets: ["latin"] })
+const nunito = Nunito({ subsets: ["latin"] });
 
 interface BlogCardProps {
-  post: Post
+  post: Post;
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
@@ -25,7 +25,7 @@ export default function BlogCard({ post }: BlogCardProps) {
       </Link>
       <div className="p-6">
         <div className="flex flex-wrap gap-2 mb-2">
-          {post.categories.map((category) => (
+          {post.categories.map((category: Category) => (
             <Link
               key={category.id}
               href={`/blog/category/${category.slug}`}
@@ -42,23 +42,25 @@ export default function BlogCard({ post }: BlogCardProps) {
             {post.title}
           </h2>
         </Link>
-        <p className="text-gray-600 text-sm mb-4 line-clamp-3">{post.meta.description}</p>
+        <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+          {post.meta.description}
+        </p>
         <div className="flex items-center justify-between mt-4">
           <div className="flex items-center">
-            {post.populatedAuthors[0]?.avatar && (
+            {post.author?.avatar && (
               <Image
-                src={post.populatedAuthors[0].avatar.thumbnailURL || "/placeholder.svg"}
-                alt={post.populatedAuthors[0].name}
+                src={post.author.avatar.thumbnailURL || "/placeholder.svg"}
+                alt={post.author.name}
                 width={40}
                 height={40}
                 className="rounded-full mr-3"
               />
             )}
             <Link
-              href={`/author/${post.author}`}
+              href={`/author/${post.author.id}`}
               className={`${nunito.className} text-sm font-semibold text-gray-800 hover:underline`}
             >
-              {post.populatedAuthors[0]?.name || "Anonymous"}
+              {post.author?.name || "Sikkhon"}
             </Link>
           </div>
           <time dateTime={post.publishedAt} className="text-xs text-gray-600">
@@ -67,6 +69,5 @@ export default function BlogCard({ post }: BlogCardProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

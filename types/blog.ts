@@ -51,7 +51,9 @@ export interface Image {
   export interface Author {
     id: number
     name: string
-    avatar?: Image
+    avatar?: {
+      thumbnailURL: string;
+    };
     bio?: string
     social?: {
       twitter?: string
@@ -79,12 +81,12 @@ export interface Image {
       description: string
     }
     publishedAt: string
-    author: number
     populatedAuthors: Author[]
     slug: string
     updatedAt: string
     createdAt: string
     _status: "published" | "draft"
+    author: Author;
   }
   
   export interface PostsResponse {
