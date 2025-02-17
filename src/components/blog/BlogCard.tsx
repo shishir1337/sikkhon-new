@@ -24,7 +24,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         </div>
       </Link>
       <div className="p-6">
-        <div className="flex flex-wrap gap-2 mb-2">
+        <div className="flex flex-wrap gap-2 mb-2 uppercase">
           {post.categories.map((category: Category) => (
             <Link
               key={category.id}

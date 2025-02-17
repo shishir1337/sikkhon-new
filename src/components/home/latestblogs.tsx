@@ -8,7 +8,7 @@ import { Post } from "../../../types/blog"
 const nunito = Nunito({ subsets: ["latin"] })
 
 export default async function LatestBlogs() {
-  const postsData = await getPosts(1, 3) // Fetch the first 3 posts
+  const postsData = await getPosts(1, 6) // Fetch the first 6 posts
 
   return (
     <section className="bg-gray-50 py-16">
